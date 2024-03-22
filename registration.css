@@ -91,11 +91,30 @@ body {
     outline: none;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+.radio{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.radio input{
+    height: 16px;
+    width: 20px;
+    padding: 1rem;
+}
+
+
 .input-group input:focus {
     border: 0.125rem solid var(--primary-color);
 }
 
-.form button {
+.form .submit {
     cursor: pointer;
     width: 100%;
     padding: .6rem 0;
@@ -105,6 +124,11 @@ body {
     color: var(--white);
     font-size: 1.2rem;
     outline: none;
+    transition: all .2s ease-in;
+}
+
+.submit:hover{
+    background-color: #49cc9c;
 }
 
 .form p {
