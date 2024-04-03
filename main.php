@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION["username"])) {
+    header("Location: registration.php");
+    exit();
+}
+
+$username = $_SESSION["username"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +42,7 @@
                 </div>
 
                 <ul>
-                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="" class="active">Home</a></li>
                     <li><a href="#register">About</a></li>
                     <li><a href="#second">Cuisines</a></li>
                     <li><a href="#third">Services</a></li>
@@ -43,7 +55,7 @@
             </div>
 
             <a class="last" href="registration.php">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-user"></i><?php echo $username; ?>
             </a>
 
         </nav>
@@ -51,7 +63,7 @@
         <div class="hero_content">
 
             <div class="hero_text">
-                <h1 class="primary WName">Tiffin <span>Trail</span></h1>
+                <h1 class="primary">Tiffin <span>Trail</span></h1>
                 <p id="tag_line"></p>
                 <a class="btn" id="register" href="registration.php">Register Now</a>
             </div>
@@ -244,7 +256,6 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <script>
-
         function animate_tagLine() {
             let tagP = document.getElementById("tag_line");
             let tagLine = "A path to Homemade and Restaurant Quality Meals";
@@ -265,14 +276,14 @@
 
         // To active button 
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const navLinks = document.querySelectorAll("nav .left ul a");
             const footerLinks = document.querySelectorAll(".footer .menu__link");
 
-            navLinks.forEach(function (link) {
-                link.addEventListener("click", function (event) {
+            navLinks.forEach(function(link) {
+                link.addEventListener("click", function(event) {
                     // Remove active class from all nav links
-                    navLinks.forEach(function (link) {
+                    navLinks.forEach(function(link) {
                         link.classList.remove("active");
                     });
 
@@ -280,7 +291,7 @@
                     this.classList.add("active");
 
                     // Remove active class from all footer links
-                    footerLinks.forEach(function (link) {
+                    footerLinks.forEach(function(link) {
                         link.classList.remove("active");
                     });
 
@@ -292,10 +303,10 @@
                 });
             });
 
-            footerLinks.forEach(function (link) {
-                link.addEventListener("click", function (event) {
+            footerLinks.forEach(function(link) {
+                link.addEventListener("click", function(event) {
                     // Remove active class from all footer links
-                    footerLinks.forEach(function (link) {
+                    footerLinks.forEach(function(link) {
                         link.classList.remove("active");
                     });
 
@@ -303,7 +314,7 @@
                     this.classList.add("active");
 
                     // Remove active class from all nav links
-                    navLinks.forEach(function (link) {
+                    navLinks.forEach(function(link) {
                         link.classList.remove("active");
                     });
 
@@ -315,10 +326,6 @@
                 });
             });
         });
-
-
-
-
     </script>
 
 </body>

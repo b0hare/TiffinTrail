@@ -28,7 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
-                echo "Registration Successfull!";
+                // echo "Registration Successfull!";
+                session_start();
+                $_SESSION["username"] = $firstName;
+
+                header("Location: main.php");
             } else {
                 echo "Sorry! Failed to register.";
             }
@@ -38,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $M_no = $_POST["mobile_number"];
         $password = $_POST["password"];
-        $sql = "SELECT Password FROM users WHERE Mobile_Number = '$M_no'";
+        $sql = "SELECT First_Name, Password FROM users WHERE Mobile_Number = '$M_no'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -47,17 +51,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($row && isset($row['Password'])) {
                 $hashed_pass = $row['Password'];
                 if (password_verify($password, $hashed_pass)) {
-                    echo "Loged in Successfully!";
+                    // echo "Loged in Successfully!";
+
+                    session_start();
+
+                    $_SESSION["username"] = $row['First_Name'];
+
+                    header("Location: main.php");
                 } else {
                     echo "Incorrect Password!";
                 }
-            }
-            else {
+            } else {
                 echo "Incorrect Mobile number or Password!";
-        }
+            }
         }
         mysqli_free_result($result);
         mysqli_close($conn);
+        exit();
     }
 }
 ?>

@@ -1,0 +1,180 @@
+/* Basic styles */
+
+*{
+  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+  h2 {
+    margin: 3rem 0;
+    margin-left: 10px;
+  }
+
+  main{
+    margin: auto 1rem;
+  }
+  
+  .dish-grid, .cook-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  
+  .dish-card, .cook-card {
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s ease-in;
+  }
+
+  .dish-card:hover,
+  .cook-card:hover{
+    transform: scale(.95);
+
+  }
+  
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+  }
+  
+  .dish-name, .dish-details {
+    margin-bottom: 0.5rem;
+  }
+  
+  .rating {
+    margin-bottom: 0.25rem;
+  }
+  
+  .fas.fa-star {
+    color: gold;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #f5f5f5;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-left img {
+    width: 4rem;
+    height: 4rem;
+    margin-right: clamp(7px, 3vw, 20px);
+    mix-blend-mode: multiply;
+  }
+
+  .nav-left span{
+    font-weight: 600;
+  }
+
+  nav .search{
+    gap: 10px;
+}
+
+nav .search input{
+    width: 15vw;
+    /* min-width: 100px; */
+    height: 30px;
+    padding-left: 5px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    outline: none;
+}
+
+nav .search input:focus,
+nav .search input:hover {
+    animation: shadow-glow 1s infinite alternate;
+}
+
+@keyframes shadow-glow {
+    0% {
+        box-shadow: 0 0 5px #a8cc4d; /* Start with a blue shadow */
+    }
+    100% {
+        box-shadow: 0 0 10px #8ece3f; /* End with a stronger blue shadow */
+    }
+}
+
+nav .search button{
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: 2px solid #3A7F00;
+    color: #3A7F00;
+    background-color: white;
+    transition: all .2s ease-in;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+nav .search button:hover{
+    background-color: #3A7F00;
+    color: white;
+}
+  
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 50px);
+}
+  
+
+nav .fas{
+  cursor: pointer;
+  color: #272727f8;
+  transition: all .2s ease-in-out;
+}
+
+nav .fas:hover{
+  transform: scale(1.2);
+  color: #000000;
+}
+
+
+  /* Section styles */
+  section {
+    margin-bottom: 2rem;
+  }
+  
+
+  /* Footer section  */
+
+  /* Basic styles and Jain food section styles as before */
+
+/* Footer styles */
+footer {
+    background-color: #f0f0f0;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  
+  .copyright {
+    background-color: #e0e0e0;
+    padding: 1rem 0;
+    color: #666;
+    font-size: 0.8rem;
+  }
