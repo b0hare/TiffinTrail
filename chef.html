@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiffin Trail</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+            box-sizing: border-box;
+        }
+
+        .primary,
+        .secondary {
+            font-family: "Cabin", sans-serif;
+        }
+
+        p {
+            font-family: "Raleway", sans-serif;
+        }
+
+        .hero_section::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            opacity: 0.9;
+            z-index: -1;
+            animation: changeBg 6s infinite normal;
+        }
+
+        @keyframes changeBg {
+            0% {
+                background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_0.jpg) no-repeat center/cover;
+            }
+
+            25% {
+                background: url(./images/Hero_image.png) no-repeat center/cover;
+            }
+
+            50% {
+                background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_1.jpg) no-repeat center/cover;
+
+            }
+
+            75% {
+                background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_3.jpg) no-repeat center/cover;
+
+            }
+
+            100% {
+                background: url(https://img.freepik.com/premium-vector/green-courier-online-food-delivery-vector-illustration_723710-15.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais) no-repeat center/cover;
+            }
+        }
+
+        .hero_section {
+            height: 70vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        nav {
+            position: sticky !important;
+            top: 0;
+            width: 100%;
+        }
+
+        nav .fas {
+            cursor: pointer;
+            color: #2d2d2df0;
+            padding: 0 2px;
+            font-size: 1.3rem;
+            transition: all .2s ease-in-out;
+        }
+
+
+        nav .fas:hover {
+            transform: scale(1.1);
+            color: #000000;
+        }
+
+        .hero_content,
+        .hero_text {
+            display: flex;
+            align-items: center;
+        }
+
+        .hero_content {
+            justify-content: space-around;
+            padding: 0 20px;
+            margin: clamp(100px, 6vw, 200px) 0;
+        }
+
+        .hero_text {
+            flex-direction: column;
+            margin: 30px 0 0;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .hero_text p {
+            font-weight: 600;
+            color: #000000;
+            font-size: clamp(12px, 3vw, 1.2rem);
+        }
+
+        .primary {
+            color: #3A7F00;
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+        }
+
+        .WName {
+            font-size: clamp(60px, 7vw, 80px);
+        }
+
+        .primary span {
+            color: black;
+            display: block;
+        }
+
+        /* Subscription  Section  */
+
+        #subs_section {
+            position: relative;
+            gap: 2rem;
+        }
+
+        .no-of-orders, .no-of-subs {
+            position: absolute;
+            z-index: 99;
+            background-color: #fff;
+        }
+
+        .no-of-subs{
+            right: 30%;
+        }
+
+        /* order div  */
+
+        .orders {
+            width: 50%;
+            height: 45vh;
+            overflow-x: auto;
+        }
+
+        .order {
+            gap: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .order img {
+            min-width: 150px;
+        }
+
+        /* subscribers div  */
+
+        .Subscribers{
+            width: 50%;
+            height: 45vh;
+            overflow-x: auto;
+        }
+
+        .subs-detail {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .subs-detail img {
+            width: 100%;
+            max-width: 200px;
+            min-width: 150px;
+            mix-blend-mode: multiply;
+        }
+
+        .subscriber {
+            background-color: #f5f5f5;
+        }
+
+        /* plan section  */
+
+        #plan_section {
+            position: relative;
+        }
+
+        .plans {
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .plan {
+            max-width: 350px;
+            background-color: #f5f5f5;
+        }
+
+        .plan img {
+            width: 100%;
+            min-width: 150px;
+        }
+
+        .plan-name {
+            font-size: clamp(16px, 3vw, 1.8rem);
+        }
+
+        .plans .btn {
+            background-color: #fff;
+            color: #3A7F00;
+            position: absolute;
+            bottom: -50px;
+            right: 10px;
+            font-size: .8rem;
+            border: 2px solid #3A7F00;
+            font-weight: 600;
+            transition: all .2s ease-in-out;
+        }
+
+        .plans .btn:hover {
+            color: #fff;
+            background-color: #3A7F00;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="hero_section">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/TT_Logo.png" alt="Logo" width="40" height="40"
+                        class="d-inline-block align-text-top">
+                    Tiffin Trail
+                </a>
+
+                <i class="fas fa-user"></i>
+            </div>
+        </nav>
+
+        <div class="hero_content">
+
+            <div class="hero_text">
+                <h1 class="primary WName">Tiffin <span>Trail</span></h1>
+                <p id="tag_line"></p>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Subscription Section  -->
+
+    <section id="subs_section" class="d-flex mx-3 my-5">
+
+        <h3 class="no-of-orders tertiary">Today's Order ☛ 4</h3>
+
+        <div class="orders my-5 p-3">
+
+            <div class="order d-flex px-3 align-items-center my-3">
+                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                    alt="plan_image" width="35%">
+
+                <div class="order_desc">
+
+                    <h3 class="plan-name tertiary">Green Diet</h3>
+                    <h4 class="quaternary subs-name lead">Pallavi, Chetakpuri</h4>
+                    <div class="status text-warning">pending</div>
+
+                </div>
+            </div>
+
+            <div class="order d-flex px-3 align-items-center mb-2">
+                <img src="https://www.visittobengal.com/blog/wp-content/uploads/North-Eastern-Cuisine.jpg"
+                    alt="plan_image" width="35%">
+
+                <div class="order_desc">
+
+                    <h3 class="plan-name tertiary">The Unique Seven</h3>
+                    <h4 class="quaternary subs-name lead">Raj, Aamkho</h4>
+                    <div class="status text-warning">pending</div>
+
+                </div>
+            </div>
+
+            <div class="order d-flex px-3 align-items-center my-3">
+                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                    alt="plan_image" width="35%">
+
+                <div class="order_desc">
+
+                    <h3 class="plan-name tertiary">Green Diet</h3>
+                    <h4 class="quaternary subs-name lead">Pallavi, Chetakpuri</h4>
+                    <div class="status text-warning">pending</div>
+
+                </div>
+            </div>
+
+            <div class="order d-flex px-3 align-items-center mb-2">
+                <img src="https://www.visittobengal.com/blog/wp-content/uploads/North-Eastern-Cuisine.jpg"
+                    alt="plan_image" width="35%">
+
+                <div class="order_desc">
+
+                    <h3 class="plan-name tertiary">The Unique Seven</h3>
+                    <h4 class="quaternary subs-name lead">Raj, Aamkho</h4>
+                    <div class="status text-warning">pending</div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <h3 class="no-of-subs tertiary">Your Subscribers ☛ 7</h3>
+
+        <div class="Subscribers my-5 p-3">
+
+
+            <div class="subs-detail">
+
+                <div class="subscriber">
+                    <img src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais"
+                        alt="subs-1">
+                    <h3 class="subs-name tertiary ps-4">Raj</h3>
+                    <h4 class="quaternary subs-name lead ps-4">Aamkho</h4>
+
+                </div>
+
+                <div class="subscriber">
+                    <img src="https://img.freepik.com/premium-photo/3d-animation-character-cartoon_113255-10852.jpg?w=740"
+                        alt="subs-1">
+                    <h3 class="subs-name tertiary ps-4">Pallavi</h3>
+                    <h4 class="quaternary subs-name lead ps-4">Chetakpuri</h4>
+
+                </div>
+
+                <div class="subscriber">
+                    <img src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais"
+                        alt="subs-1">
+                    <h3 class="subs-name tertiary ps-4">Raj</h3>
+                    <h4 class="quaternary subs-name lead ps-4">Aamkho</h4>
+
+                </div>
+
+                <div class="subscriber">
+                    <img src="https://img.freepik.com/premium-photo/3d-animation-character-cartoon_113255-10852.jpg?w=740"
+                        alt="subs-1">
+                    <h3 class="subs-name tertiary ps-4">Pallavi</h3>
+                    <h4 class="quaternary subs-name lead ps-4">Chetakpuri</h4>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- plans section  -->
+
+    <section id="plan_section" class="mx-3 my-5 py-2">
+
+        <h2 class="secondary">Your Plans</h2>
+        <div class="plans d-flex">
+
+            <div class="plan">
+
+                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                    alt="">
+
+                <div class="plan-details">
+                    <p class="plan-name">Green Diet</p>
+                    <p class="plan-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quia minima
+                        tempore fugiat, quidem vel?</p>
+                    <p class="plan-price">₹2400</p>
+                </div>
+
+            </div>
+
+            <div class="plan">
+
+                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                    alt="">
+
+                <div class="plan-details">
+                    <p class="plan-name">The Unique Seven</p>
+                    <p class="plan-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quia minima
+                        tempore fugiat, quidem vel?</p>
+                    <p class="plan-price">₹2900</p>
+                </div>
+
+            </div>
+
+            <div class="plan">
+
+                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                    alt="">
+
+                <div class="plan-details">
+                    <p class="plan-name">Green Diet</p>
+                    <p class="plan-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quia minima
+                        tempore fugiat, quidem vel?</p>
+                    <p class="plan-price">₹2400</p>
+                </div>
+
+            </div>
+
+            <div class="plan">
+
+                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                    alt="">
+
+                <div class="plan-details">
+                    <p class="plan-name">The Unique Seven</p>
+                    <p class="plan-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quia minima
+                        tempore fugiat, quidem vel?</p>
+                    <p class="plan-price">₹2900</p>
+                </div>
+
+            </div>
+
+            <button class="btn">See All</button>
+
+        </div>
+
+    </section>
+
+
+    <script>
+        function animate_tagLine() {
+            let tagP = document.getElementById("tag_line");
+            let tagLine = "A path to Homemade and Restaurant Quality Meals";
+            let index = 0;
+
+            let appear_tagline = setInterval(() => {
+
+                tagP.textContent += tagLine[index];
+                index++;
+                if (index === tagLine.length) {
+                    clearInterval(appear_tagline);
+                }
+
+            }, 100);
+        }
+
+        window.onload = animate_tagLine();
+
+    </script>
+
+
+</body>
+
+</html>

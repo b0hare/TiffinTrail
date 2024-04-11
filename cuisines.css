@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
   
+a{
+  text-decoration: none;
+}
+
   h2 {
     margin: 3rem 0;
     margin-left: 10px;
@@ -16,45 +20,84 @@
     margin: auto 1rem;
   }
   
-  .dish-grid, .cook-grid {
+  .plan-grid, .chef-grid, .restau-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
+  }
+
+  .chef-grid{
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: clamp(20px, 5vw, 30px);
   }
   
   
-  .dish-card, .cook-card {
+  .plan-card, .chef-card, .restau-card {
     padding: 1rem;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
     cursor: pointer;
     transition: transform .2s ease-in;
   }
 
-  .dish-card:hover,
-  .cook-card:hover{
+  .plan-card:hover,
+  .chef-card:hover,
+  .restau-card:hover{
     transform: scale(.95);
 
   }
+
+  .plan-details, .restau-details{
+    margin-top: .5rem;
+    margin-left: .5rem;
+  }
   
   img {
-    width: 150px;
+    width: 100%;
     height: 150px;
     border-radius: 5%;
-    aspect-ratio: 2/3;
     object-fit: cover;
   }
-  
-  .dish-name, .dish-details {
+
+  .chef-name, .plan-name,
+  .rating, .restau-name
+  {
+    font-weight: 600;
     margin-bottom: 0.5rem;
   }
-  
-  .rating {
-    margin-bottom: 0.25rem;
+
+  .address{
+    letter-spacing: 1px;
+    opacity: .7;
   }
   
+  .r-circle{
+    width: 20px;
+    height: 20px;
+    background-color: #3A7F00;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .r-circle .fa-star{
+    color: #fff;
+    background-color: transparent;
+  }
+
+
+  
+  .rating {
+    display: flex;
+    gap: 2px;
+  }
+  
+  .home-cooks .chef-grid img{
+    width: auto;
+    aspect-ratio: 3/4;
+  }
+
   .fas.fa-star {
     color: gold;
   }
@@ -62,7 +105,7 @@
   /* Header styles */
   header {
     background-color: #f5f5f5;
-    padding: 1rem 2rem;
+    padding: 1rem;
     position: sticky;
     top: 0;
     z-index: 9999;
@@ -72,7 +115,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
   }
   
   .nav-left {
@@ -97,7 +139,7 @@
 
 nav .search input{
     width: 15vw;
-    /* min-width: 100px; */
+    min-width: 100px;
     height: 30px;
     padding-left: 5px;
     border: 2px solid gray;
@@ -134,11 +176,16 @@ nav .search button:hover{
     background-color: #3A7F00;
     color: white;
 }
+
+i.fa-magnifying-glass{
+  display: none;
+}
   
 .nav-right{
     display: flex;
     align-items: center;
     gap: clamp(10px, 3vw, 50px);
+    padding-left: 1rem;
 }
   
 
@@ -171,10 +218,33 @@ footer {
     text-align: center;
   }
   
+footer p{
+  padding-bottom: 2rem;
+}
   
   .copyright {
     background-color: #e0e0e0;
     padding: 1rem 0;
     color: #666;
     font-size: 0.8rem;
+  }
+
+
+  @media only screen and (max-width: 500px){
+
+    nav .search button{
+      display: none;
+    }
+
+    nav .search input{
+      display: none;
+    }
+
+    .nav-right{
+      gap: 50px;
+    }
+
+    i.fa-magnifying-glass{
+      display: inline;
+    }
   }

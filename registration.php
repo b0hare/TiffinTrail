@@ -1,5 +1,30 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['captcha']) || empty($_POST)) {
+    // If not set or if the page is loaded for the first time, generate a new captcha and store it in the session
+    captchaGeneration();
+}
+
+function captchaGeneration() {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $len = strlen($characters);
+    $captcha = '';
+    for ($i = 0; $i < 6; $i++) {
+        $captcha .= $characters[rand(0, $len - 1)];
+    }
+    $_SESSION['captcha'] = $captcha; // Store captcha in session
+    return $captcha;
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if ($_POST['captcha_input'] !== $_SESSION['captcha']) {
+        
+        echo "Incorrect Captcha!";
+        exit(); // Stop further execution
+    }
 
     $server = "localhost";
     $user = "root";
@@ -10,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn = mysqli_connect($server, $user, $pass, $db);
 
     if (isset($_POST["role"])) {
-        $firstName = $_POST["F_name"];
-        $lastName = $_POST["L_name"];
+        $firstName = filter_input(INPUT_POST, "F_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $lastName = filter_input(INPUT_POST, "L_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $M_no = $_POST["mobile_number"];
-        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        $C_pass = $_POST["C_password"];
+        $password = password_hash(filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS), PASSWORD_DEFAULT);
+        $C_pass = filter_input(INPUT_POST, "C_password", FILTER_SANITIZE_SPECIAL_CHARS);
         $role = $_POST["role"];
 
         try {
@@ -22,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } catch (mysqli_sql_exception) {
             echo "Could not connect.";
         }
+
         if ($conn) {
             $sql = "INSERT INTO users(First_Name, Last_Name, Mobile_Number, Password, Role)
             VALUES  ('$firstName', '$lastName', '$M_no', '$password', '$role')";
@@ -29,10 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($result) {
                 // echo "Registration Successfull!";
-                session_start();
                 $_SESSION["username"] = $firstName;
 
-                header("Location: main.php");
+                header("Location: user.php");
             } else {
                 echo "Sorry! Failed to register.";
             }
@@ -41,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else {
         $M_no = $_POST["mobile_number"];
-        $password = $_POST["password"];
+        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
         $sql = "SELECT First_Name, Password FROM users WHERE Mobile_Number = '$M_no'";
         $result = mysqli_query($conn, $sql);
 
@@ -53,11 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (password_verify($password, $hashed_pass)) {
                     // echo "Loged in Successfully!";
 
-                    session_start();
-
                     $_SESSION["username"] = $row['First_Name'];
 
-                    header("Location: main.php");
+                    header("Location: user.php");
                 } else {
                     echo "Incorrect Password!";
                 }
@@ -79,7 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
+
     <link rel="stylesheet" href="registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
@@ -117,6 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="radio" name="role" value="Service Provider" required>
                             <label>Service Provider</label>
                         </div>
+
                         <input class="submit" type="submit" value="Sign up" name="submit">
 
                         <p>
@@ -143,6 +170,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="input-group">
                             <i class='bx bxs-lock-alt'></i>
                             <input type="password" placeholder="Password" name="password" required>
+                        </div>
+
+                        <div class="captcha-field input-group">
+                            <p id="captcha"><?php echo $_SESSION['captcha']; ?></p>
+                            <!-- <i class="fa-solid fa-rotate" style="color: #000;"></i> -->
+
+                            <input type="text" name="captcha_input" id="captcha-input" placeholder="Enter Captcha" required>
                         </div>
 
                         <input class="submit" type="submit" value="Sign in" name="submit">
@@ -212,6 +246,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         setTimeout(() => {
             container.classList.add('sign-in')
         }, 200)
+
+        // Captcha 
+
+        // let captcha = '';
+
+        // function captchaGeneration() {
+
+        //     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        //     let len = characters.length;
+        //     let captcha_inp = document.getElementById('captcha-input');
+        //     let captcha_gen = document.getElementById('captcha');
+        //     let captcha = '';
+
+        //     for (let index = 0; index < 6; index++) {
+        //         let randomIndex = Math.floor(Math.random() * characters.length);
+        //         captcha += characters.charAt(randomIndex);
+        //     }
+
+        //     captcha_gen.innerText = captcha;
+
+        // }
+
+        // function CaptchaCompare() {
+
+        //         if (captcha === captcha_inp.value) {
+        //         alert("Logged in successfull!");
+        //     }
+        //     else{
+        //         alert("Incorrect Captcha!");
+        //     }
+        // }
+
+
+
+        // window.onload = captchaGeneration;
     </script>
 </body>
 

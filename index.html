@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="index.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
@@ -31,20 +31,29 @@
 
                 <ul>
                     <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#register">About</a></li>
                     <li><a href="#second">Cuisines</a></li>
                     <li><a href="#third">Services</a></li>
+                    <li><a href="#about">About</a></li>
                 </ul>
+
             </div>
 
             <div class="right">
                 <input type="search" name="" placeholder="Search food">
                 <button type="submit">Search</button>
+
+                <div id="bar" onclick="menu_bar()" class="opacity8">
+                    <div id="line1"></div>
+                    <div id="line2"></div>
+                    <div id="line3"></div>
+                </div>
+
+                <a class="last" href="registration.php">
+                    <i class="fas fa-user"></i>
+                </a>
             </div>
 
-            <a class="last" href="registration.php">
-                <i class="fas fa-user"></i>
-            </a>
+
 
         </nav>
 
@@ -59,18 +68,6 @@
 
     </header>
     <hr>
-
-    <!-- About section  -->
-
-    <section id="about">
-        <h2 class="secondary">About Us</h2>
-        <p>Tiffin Trail is a tiffin delivery site based in Gwalior, MP, that bridges the gap between users and a variety
-            of home-cooked meals and restaurant delights.
-            <br><br>
-            Our platform aims to provide a seamless experience for those looking to enjoy delicious meals from local
-            cooks and eateries, all conveniently delivered to their doorstep.
-        </p>
-    </section>
 
     <!-- Cuisine section  -->
 
@@ -133,6 +130,8 @@
         </div>
     </section>
     <hr>
+
+    <!-- Third section  -->
 
     <section id="third">
         <h2 class="secondary">Our Services</h2>
@@ -206,6 +205,18 @@
     </section>
     <hr>
 
+    <!-- About section  -->
+
+    <section id="about">
+        <h2 class="secondary">About Us</h2>
+        <p>Tiffin Trail is a tiffin delivery site based in Gwalior, MP, that bridges the gap between users and a variety
+            of home-cooked meals and restaurant delights.
+            <br><br>
+            Our platform aims to provide a seamless experience for those looking to enjoy delicious meals from local
+            cooks and eateries, all conveniently delivered to their doorstep.
+        </p>
+    </section>
+
     <!-- Footer  -->
 
     <footer class="footer">
@@ -231,9 +242,10 @@
         </ul>
         <ul class="menu">
             <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-            <li class="menu__item"><a class="menu__link" href="#about">About</a></li>
             <li class="menu__item"><a class="menu__link" href="#second">Cuisine</a></li>
             <li class="menu__item"><a class="menu__link" href="#third">Services</a></li>
+            <li class="menu__item"><a class="menu__link" href="#about">About</a></li>
+
 
         </ul>
         <p>&copy;2024 Tiffin Trail | All Rights Reserved</p>
@@ -317,6 +329,21 @@
         });
 
 
+        let line1 = document.getElementById("line1");
+        let line2 = document.getElementById("line2");
+        let line3 = document.getElementById("line3");
+
+        function menu_bar () {
+
+            document.getElementById("bar").classList.toggle("opacity8");
+
+            line2.classList.toggle("v-none");
+
+            line3.classList.toggle("rotate-up");
+
+            line1.classList.toggle("rotate-down");
+            
+        }
 
 
     </script>
