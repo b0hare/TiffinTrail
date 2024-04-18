@@ -243,16 +243,15 @@ nav .right button:hover {
 
 nav .fa-user {
     cursor: pointer;
-    color: #2d2d2df0;
+    color: #000000;
     padding: 0 2px;
-    font-size: 1.3rem;
+    font-size: 1rem;
     transition: all .2s ease-in-out;
 }
 
 
 nav .fa-user:hover {
-    transform: scale(1.2);
-    color: #000000;
+    transform: scale(1.1);
 }
 
 header .img {
@@ -333,7 +332,7 @@ hr {
 #about p,
 #second p,
 #third p {
-    width: 70%;
+    width: 70% !important;
     line-height: 1.5;
     letter-spacing: 1px;
 }
@@ -353,7 +352,7 @@ hr {
 
 
 .secondary {
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: clamp(28px, 4vw, 38px);
     color: #FC8019;
     font-weight: 600;
 
@@ -437,6 +436,7 @@ hr {
 #serviceP {
     background-color: #118b32;
     color: white;
+    text-align: center;
     padding: 10px;
     margin: 20px 0;
     font-size: 1.1rem;
@@ -596,11 +596,12 @@ hr {
     #about p,
     #second p,
     #third p {
-        width: 90%;
+        width: 90% !important;
     }
 
     .cuisines,
     .services {
+        width: 90% !important;
         flex-direction: column-reverse;
         align-items: center;
         gap: 30px;
@@ -617,6 +618,7 @@ hr {
         font-size: clamp(24px, 6vw, 32px);
     }
 
+}
 
     /* Media query  */
 
@@ -655,5 +657,3 @@ hr {
 
 
     }
-
-}

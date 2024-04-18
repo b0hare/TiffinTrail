@@ -77,20 +77,20 @@
             position: sticky !important;
             top: 0;
             width: 100%;
+            padding-inline: clamp(30px, 5vw, 50px) !important;
         }
 
         nav .fas {
             cursor: pointer;
-            color: #2d2d2df0;
+            color: #000000;
             padding: 0 2px;
-            font-size: 1.3rem;
+            font-size: 1rem;
             transition: all .2s ease-in-out;
         }
 
 
         nav .fas:hover {
             transform: scale(1.1);
-            color: #000000;
         }
 
         .hero_content,
@@ -115,7 +115,7 @@
         .hero_text p {
             font-weight: 600;
             color: #000000;
-            font-size: clamp(12px, 3vw, 1.2rem);
+            font-size: clamp(16px, 3vw, 1.2rem);
         }
 
         .primary {
@@ -134,27 +134,20 @@
             display: block;
         }
 
-        /* Subscription  Section  */
+        /* Orders and Subscription  Section  */
 
-        #subs_section {
+        #ordersNsubs {
             position: relative;
             gap: 2rem;
         }
 
-        .no-of-orders, .no-of-subs {
-            position: absolute;
-            z-index: 99;
-            background-color: #fff;
-        }
-
-        .no-of-subs{
+        .no-of-subs {
             right: 30%;
         }
 
         /* order div  */
 
         .orders {
-            width: 50%;
             height: 45vh;
             overflow-x: auto;
         }
@@ -170,28 +163,31 @@
 
         /* subscribers div  */
 
-        .Subscribers{
-            width: 50%;
+        .no-of-orders, .no-of-subs{
+            text-align: center;
+        }
+
+        .Subscribers {
             height: 45vh;
             overflow-x: auto;
-        }
-
-        .subs-detail {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .subs-detail img {
-            width: 100%;
-            max-width: 200px;
-            min-width: 150px;
-            mix-blend-mode: multiply;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
         .subscriber {
+            width: 100%;
             background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
         }
+
+        .subscriber img {
+            width: 100%;
+            max-width: 150px;
+            mix-blend-mode: multiply;
+        }
+
 
         /* plan section  */
 
@@ -215,7 +211,7 @@
         }
 
         .plan-name {
-            font-size: clamp(16px, 3vw, 1.8rem);
+            font-size: clamp(20px, 3vw, 1.6rem);
         }
 
         .plans .btn {
@@ -233,6 +229,27 @@
         .plans .btn:hover {
             color: #fff;
             background-color: #3A7F00;
+        }
+
+
+        /* media query screen < 700px  */
+
+        @media only screen and (max-width: 700px){
+
+            #ordersNsubs{
+                display: block !important;
+            }
+
+            .plans{
+                height: 70vh;
+                flex-wrap: wrap;
+                overflow-x: auto;
+            }
+
+            .plan{
+                max-width: calc(100% - 50px);
+                margin-bottom: 20px;
+            }
         }
     </style>
 
@@ -263,110 +280,122 @@
 
     </header>
 
-    <!-- Subscription Section  -->
+    <!-- Orders and Subs..  -->
 
-    <section id="subs_section" class="d-flex mx-3 my-5">
+    <section id="ordersNsubs" class="d-flex mx-3 my-5">
 
-        <h3 class="no-of-orders tertiary">Today's Order ☛ 4</h3>
+        <div id="orders_section">
 
-        <div class="orders my-5 p-3">
+            <h3 class="no-of-orders tertiary">Today's Order ☛ 4</h3>
 
-            <div class="order d-flex px-3 align-items-center my-3">
-                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
-                    alt="plan_image" width="35%">
+            <div class="orders my-5">
 
-                <div class="order_desc">
+                <div class="order d-flex px-3 align-items-center mb-3">
+                    <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                        alt="plan_image" width="35%">
 
-                    <h3 class="plan-name tertiary">Green Diet</h3>
-                    <h4 class="quaternary subs-name lead">Pallavi, Chetakpuri</h4>
-                    <div class="status text-warning">pending</div>
+                    <div class="order_desc">
 
+                        <h3 class="plan-name tertiary">Green Diet</h3>
+                        <h4 class="quaternary subs-name lead">Pallavi, Chetakpuri</h4>
+                        <div class="status text-warning">pending</div>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="order d-flex px-3 align-items-center mb-2">
-                <img src="https://www.visittobengal.com/blog/wp-content/uploads/North-Eastern-Cuisine.jpg"
-                    alt="plan_image" width="35%">
+                <div class="order d-flex px-3 align-items-center mb-2">
+                    <img src="https://www.visittobengal.com/blog/wp-content/uploads/North-Eastern-Cuisine.jpg"
+                        alt="plan_image" width="35%">
 
-                <div class="order_desc">
+                    <div class="order_desc">
 
-                    <h3 class="plan-name tertiary">The Unique Seven</h3>
-                    <h4 class="quaternary subs-name lead">Raj, Aamkho</h4>
-                    <div class="status text-warning">pending</div>
+                        <h3 class="plan-name tertiary">The Unique Seven</h3>
+                        <h4 class="quaternary subs-name lead">Raj, Aamkho</h4>
+                        <div class="status text-warning">pending</div>
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="order d-flex px-3 align-items-center my-3">
-                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
-                    alt="plan_image" width="35%">
+                <div class="order d-flex px-3 align-items-center mb-3">
+                    <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                        alt="plan_image" width="35%">
 
-                <div class="order_desc">
+                    <div class="order_desc">
 
-                    <h3 class="plan-name tertiary">Green Diet</h3>
-                    <h4 class="quaternary subs-name lead">Pallavi, Chetakpuri</h4>
-                    <div class="status text-warning">pending</div>
+                        <h3 class="plan-name tertiary">Green Diet</h3>
+                        <h4 class="quaternary subs-name lead">Pallavi, Chetakpuri</h4>
+                        <div class="status text-warning">pending</div>
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="order d-flex px-3 align-items-center mb-2">
-                <img src="https://www.visittobengal.com/blog/wp-content/uploads/North-Eastern-Cuisine.jpg"
-                    alt="plan_image" width="35%">
+                <div class="order d-flex px-3 align-items-center mb-2">
+                    <img src="https://www.visittobengal.com/blog/wp-content/uploads/North-Eastern-Cuisine.jpg"
+                        alt="plan_image" width="35%">
 
-                <div class="order_desc">
+                    <div class="order_desc">
 
-                    <h3 class="plan-name tertiary">The Unique Seven</h3>
-                    <h4 class="quaternary subs-name lead">Raj, Aamkho</h4>
-                    <div class="status text-warning">pending</div>
+                        <h3 class="plan-name tertiary">The Unique Seven</h3>
+                        <h4 class="quaternary subs-name lead">Raj, Aamkho</h4>
+                        <div class="status text-warning">pending</div>
 
+                    </div>
                 </div>
+
             </div>
 
         </div>
 
-        <h3 class="no-of-subs tertiary">Your Subscribers ☛ 7</h3>
+        <div id="subs_section">
+            <h3 class="no-of-subs tertiary">Your Subscribers ☛ 7</h3>
 
-        <div class="Subscribers my-5 p-3">
+            <div class="Subscribers d-flex my-5">
 
-
-            <div class="subs-detail">
-
-                <div class="subscriber">
+                <div class="subscriber mb-3">
                     <img src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais"
                         alt="subs-1">
-                    <h3 class="subs-name tertiary ps-4">Raj</h3>
-                    <h4 class="quaternary subs-name lead ps-4">Aamkho</h4>
+
+                    <div class="subs-detail">
+                        <h3 class="subs-name tertiary ps-4">Raj</h3>
+                        <h4 class="quaternary subs-name lead ps-4">Aamkho</h4>
+                    </div>
+
+                </div>
+
+                <div class="subscriber mb-3">
+                    <img src="https://img.freepik.com/premium-photo/3d-animation-character-cartoon_113255-10852.jpg?w=740"
+                        alt="subs-1">
+
+                    <div class="subs-detail">
+                        <h3 class="subs-name tertiary ps-4">Pallavi</h3>
+                        <h4 class="quaternary subs-name lead ps-4">Chetakpuri</h4>
+                    </div>
+
+                </div>
+
+                <div class="subscriber mb-3">
+                    <img src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais"
+                        alt="subs-1">
+
+                    <div class="subs-detail">
+                        <h3 class="subs-name tertiary ps-4">Raj</h3>
+                        <h4 class="quaternary subs-name lead ps-4">Aamkho</h4>
+                    </div>
 
                 </div>
 
                 <div class="subscriber">
                     <img src="https://img.freepik.com/premium-photo/3d-animation-character-cartoon_113255-10852.jpg?w=740"
                         alt="subs-1">
-                    <h3 class="subs-name tertiary ps-4">Pallavi</h3>
-                    <h4 class="quaternary subs-name lead ps-4">Chetakpuri</h4>
 
-                </div>
-
-                <div class="subscriber">
-                    <img src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais"
-                        alt="subs-1">
-                    <h3 class="subs-name tertiary ps-4">Raj</h3>
-                    <h4 class="quaternary subs-name lead ps-4">Aamkho</h4>
-
-                </div>
-
-                <div class="subscriber">
-                    <img src="https://img.freepik.com/premium-photo/3d-animation-character-cartoon_113255-10852.jpg?w=740"
-                        alt="subs-1">
-                    <h3 class="subs-name tertiary ps-4">Pallavi</h3>
-                    <h4 class="quaternary subs-name lead ps-4">Chetakpuri</h4>
+                    <div class="subs-detail">
+                        <h3 class="subs-name tertiary ps-4">Pallavi</h3>
+                        <h4 class="quaternary subs-name lead ps-4">Chetakpuri</h4>
+                    </div>
 
                 </div>
 
             </div>
-
-
         </div>
 
     </section>
@@ -376,7 +405,7 @@
 
     <section id="plan_section" class="mx-3 my-5 py-2">
 
-        <h2 class="secondary">Your Plans</h2>
+        <h2 class="secondary my-5">Your Plans</h2>
         <div class="plans d-flex">
 
             <div class="plan">

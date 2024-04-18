@@ -2,22 +2,6 @@
 
 session_start();
 
-if (!isset($_SESSION['captcha']) || empty($_POST)) {
-    // If not set or if the page is loaded for the first time, generate a new captcha and store it in the session
-    captchaGeneration();
-}
-
-function captchaGeneration() {
-    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    $len = strlen($characters);
-    $captcha = '';
-    for ($i = 0; $i < 6; $i++) {
-        $captcha .= $characters[rand(0, $len - 1)];
-    }
-    $_SESSION['captcha'] = $captcha; // Store captcha in session
-    return $captcha;
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['captcha_input'] !== $_SESSION['captcha']) {
@@ -173,8 +157,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <div class="captcha-field input-group">
-                            <p id="captcha"><?php echo $_SESSION['captcha']; ?></p>
-                            <!-- <i class="fa-solid fa-rotate" style="color: #000;"></i> -->
+                            
+                            <div class="generate-captcha">
+                            <p id="captcha"></p>
+                            <i class="fa-solid fa-rotate" id="captcha-refresh" style="color: #000;"></i>
+                            </div>
 
                             <input type="text" name="captcha_input" id="captcha-input" placeholder="Enter Captcha" required>
                         </div>
@@ -235,6 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- END CONTENT SECTION -->
     </div>
 
+
     <script>
         let container = document.getElementById('container')
 
@@ -247,40 +235,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             container.classList.add('sign-in')
         }, 200)
 
-        // Captcha 
 
-        // let captcha = '';
+        function captchaGeneration(){
+            setTimeout(() => {
+                captcha = document.getElementById("captcha");
 
-        // function captchaGeneration() {
+            let fetchSourceData = new XMLHttpRequest();
+            fetchSourceData.open('GET', 'captcha-refresh.php?v=true', true);
+            fetchSourceData.send();
 
-        //     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        //     let len = characters.length;
-        //     let captcha_inp = document.getElementById('captcha-input');
-        //     let captcha_gen = document.getElementById('captcha');
-        //     let captcha = '';
+            fetchSourceData.onreadystatechange = (() =>{
+                if(fetchSourceData.readyState == 4 && fetchSourceData.status == 200){
+                captcha.innerHTML = fetchSourceData.responseText;
+                }
+            })
+            }, 300);
+        }
+        let captcha = document.getElementById("captcha-refresh").addEventListener('click', function(){
+            captchaGeneration();
+            document.getElementById("captcha-refresh").classList.toggle('refresh-icon');
+            setTimeout(() => {
+                document.getElementById("captcha-refresh").classList.remove('refresh-icon');
+            }, 700);
+        })
 
-        //     for (let index = 0; index < 6; index++) {
-        //         let randomIndex = Math.floor(Math.random() * characters.length);
-        //         captcha += characters.charAt(randomIndex);
-        //     }
+        captchaGeneration();
 
-        //     captcha_gen.innerText = captcha;
-
-        // }
-
-        // function CaptchaCompare() {
-
-        //         if (captcha === captcha_inp.value) {
-        //         alert("Logged in successfull!");
-        //     }
-        //     else{
-        //         alert("Incorrect Captcha!");
-        //     }
-        // }
-
-
-
-        // window.onload = captchaGeneration;
     </script>
 </body>
 

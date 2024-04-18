@@ -59,7 +59,7 @@ $username = $_SESSION["username"];
                     <div id="line3"></div>
                 </div>
 
-                    <i class="fas fa-user"></i><?php echo $username; ?>
+                    <i class="fas fa-user">&nbsp; <?php echo $username; ?></i>
 
             </div>
 

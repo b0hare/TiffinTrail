@@ -86,15 +86,53 @@ body {
 
 /* cAPTCHA  */
 
+.generate-captcha{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+}
+
+
 #captcha{
     background: url(https://www.codeproject.com/KB/scripting/CreateCaptcha/1.JPG) no-repeat center;
+    width: 200px;
     font-size: 2rem;
     letter-spacing: 15px;
     padding: 10px 0;
-    color: #757575d0;
+    color: #5f5f5fd8;
     font-weight: 500;
     font-family: "Caveat", cursive;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;   
+    -khtml-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;     
+    user-select: none;
 }
+
+.fa-rotate{
+    cursor: pointer;
+    
+}
+
+/* Style for the refresh icon */
+.refresh-icon {
+    transition: transform 0.2s ease; /* Smooth transition */
+    animation: rotate .2s linear .1s; /* Rotate animation */
+  }
+
+/* Define the keyframes for the rotation */
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
 
 input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
