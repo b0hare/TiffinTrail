@@ -350,6 +350,9 @@ hr {
     margin: 5rem 0 !important;
 }
 
+#about{
+    margin-bottom: 10rem !important;
+}
 
 .secondary {
     font-size: clamp(28px, 4vw, 38px);
