@@ -39,7 +39,7 @@
             <div class="plan-grid">
 
                 <div class="plan-card">
-                    <img src="https://www.spiceupthecurry.com/wp-content/uploads/2022/01/palak-paneer-1.jpg" alt="Veg plan 1">
+                    <img src="https://img-global.cpcdn.com/recipes/ce884d070a8abf57/1200x630cq70/photo.jpg" alt="Veg plan 1">
 
                     <div class="plan-details">
                         <p class="plan-name">Veg Thali</p>
@@ -48,11 +48,12 @@
                             4.4
                         </div>
                         <p class="address">ChetakPuri</p>
+                        <p class="price">₹3200</p>
                     </div>
                 </div>
 
                 <div class="plan-card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZuwpPtKEkLW6O4BukBbmdk5R41VcLSTqsNQ&usqp=CAU" alt="Veg plan 2">
+                    <img src="https://www.aheadofthyme.com/wp-content/uploads/2021/11/vegetarian-chili-7-683x1024.jpg" alt="Veg plan 2">
 
                     <div class="plan-details">
                         <p class="plan-name">Rajma</p>
@@ -61,6 +62,7 @@
                             4.4
                         </div>
                         <p class="address">Naka Chandravadni</p>
+                        <p class="price">₹2900</p>
                     </div>
                 </div>
 
@@ -74,11 +76,12 @@
                             4.4
                         </div>
                         <p class="address">Bada Market</p>
+                        <p class="price">₹3000</p>
                     </div>
                 </div>
 
                 <div class="plan-card">
-                    <img src="https://www.spiceupthecurry.com/wp-content/uploads/2022/01/palak-paneer-1.jpg" alt="Veg plan 1">
+                    <img src="https://img-global.cpcdn.com/recipes/ce884d070a8abf57/1200x630cq70/photo.jpg" alt="Veg plan 1">
 
                     <div class="plan-details">
                         <p class="plan-name">Veg Thali</p>
@@ -87,11 +90,12 @@
                             4.4
                         </div>
                         <p class="address">ChetakPuri</p>
+                        <p class="price">₹3200</p>
                     </div>
                 </div>
 
                 <div class="plan-card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZuwpPtKEkLW6O4BukBbmdk5R41VcLSTqsNQ&usqp=CAU" alt="Veg plan 2">
+                    <img src="https://www.aheadofthyme.com/wp-content/uploads/2021/11/vegetarian-chili-7-683x1024.jpg" alt="Veg plan 2">
 
                     <div class="plan-details">
                         <p class="plan-name">Rajma</p>
@@ -100,6 +104,7 @@
                             4.4
                         </div>
                         <p class="address">Naka Chandravadni</p>
+                        <p class="price">₹2900</p>
                     </div>
                 </div>
 
@@ -201,7 +206,7 @@
             <div class="restau-grid">
 
                 <div class="restau-card">
-                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/zcpjz7clwie4tluwk027" alt="Veg plan 1">
+                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/3d16d7cc466fc3f7dce770a6a3000ea9" alt="Veg plan 1">
 
                     <div class="plan-details">
                         <p class="plan-name">Veg Thali</p>
@@ -210,6 +215,7 @@
                             4.4
                         </div>
                         <p class="address">Govindpuri</p>
+                        <p class="price">₹3150</p>
                     </div>
 
                 </div>
@@ -224,11 +230,12 @@
                             4.4
                         </div>
                         <p class="address">Thatipur</p>
+                        <p class="price">₹3000</p>
                     </div>
                 </div>
 
                 <div class="restau-card">
-                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/zcpjz7clwie4tluwk027" alt="Veg plan 1">
+                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/3d16d7cc466fc3f7dce770a6a3000ea9" alt="Veg plan 1">
 
                     <div class="plan-details">
                         <p class="plan-name">Veg Thali</p>
@@ -237,6 +244,7 @@
                             4.4
                         </div>
                         <p class="address">Govindpuri</p>
+                        <p class="price">₹3150</p>
                     </div>
 
                 </div>
@@ -251,11 +259,12 @@
                             4.4
                         </div>
                         <p class="address">Thatipur</p>
+                        <p class="price">₹3000</p>
                     </div>
                 </div>
 
                 <div class="restau-card">
-                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/zcpjz7clwie4tluwk027" alt="Veg plan 1">
+                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/3d16d7cc466fc3f7dce770a6a3000ea9" alt="Veg plan 1">
 
                     <div class="plan-details">
                         <p class="plan-name">Veg Thali</p>
@@ -264,13 +273,13 @@
                             4.4
                         </div>
                         <p class="address">Govindpuri</p>
+                        <p class="price">₹3150</p>
                     </div>
 
                 </div>
 
             </div>
         </section>
-
         <section class="restaurants">
             <h2>Restaurants</h2>
             <div class="restau-grid">

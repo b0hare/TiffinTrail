@@ -34,6 +34,45 @@
 
     <main>
 
+
+    <!-- Full plan  -->
+
+        <div id="full-plan">
+
+            <div class="plan-card">
+                <img src="https://img-global.cpcdn.com/recipes/ce884d070a8abf57/1200x630cq70/photo.jpg" alt="Veg plan 1">
+
+                <div class="plan-details">
+                    <p class="plan-name">Veg Thali</p>
+                    <div class="rating">
+                        <div class="r-circle"><i class="fa-solid fa-star"></i></div>
+                        4.4
+                    </div>
+                    <p class="address">ChetakPuri</p>
+                    <div class="prices">
+                    <p>Weekly: &ThickSpace;<span class="price">₹900</span></p>
+                    <p>Monthly: <span class="price">₹3200</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="includes">
+                <h2>Tiffin Box Includes</h2>
+                <ul>
+                    <li>➛ 1 Daal</li>
+                    <li>➛ 1 Curry</li>
+                    <li>➛ 4 Rotis</li>
+                    <li>➛ 1 Rice Bowl or 4 more Rotis</li>
+                    <li>➛ Salad,Raita, Achaar, Desert</li>
+                </ul>
+                <p>Two times a day (1 Item/day)</p>
+                <button id="buy">Buy</button>
+            </div>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <!-- Home-cooked section  -->
+
         <section class="home-cooked">
             <h2>Home-Cooked Meal Plans</h2>
             <div class="plan-grid">
@@ -48,6 +87,7 @@
                             4.4
                         </div>
                         <p class="address">ChetakPuri</p>
+                        <p class="price">₹3200</p>
                     </div>
                 </div>
 
@@ -61,6 +101,7 @@
                             4.4
                         </div>
                         <p class="address">Naka Chandravadni</p>
+                        <p class="price">₹2900</p>
                     </div>
                 </div>
 
@@ -74,6 +115,7 @@
                             4.4
                         </div>
                         <p class="address">Bada Market</p>
+                        <p class="price">₹3000</p>
                     </div>
                 </div>
 
@@ -87,6 +129,7 @@
                             4.4
                         </div>
                         <p class="address">ChetakPuri</p>
+                        <p class="price">₹3200</p>
                     </div>
                 </div>
 
@@ -100,11 +143,14 @@
                             4.4
                         </div>
                         <p class="address">Naka Chandravadni</p>
+                        <p class="price">₹2900</p>
                     </div>
                 </div>
 
             </div>
         </section>
+
+
 
         <section class="home-cooks">
             <h2>Home Cooks</h2>
@@ -210,6 +256,7 @@
                             4.4
                         </div>
                         <p class="address">Govindpuri</p>
+                        <p class="price">₹3150</p>
                     </div>
 
                 </div>
@@ -224,6 +271,7 @@
                             4.4
                         </div>
                         <p class="address">Thatipur</p>
+                        <p class="price">₹3000</p>
                     </div>
                 </div>
 
@@ -237,6 +285,7 @@
                             4.4
                         </div>
                         <p class="address">Govindpuri</p>
+                        <p class="price">₹3150</p>
                     </div>
 
                 </div>
@@ -251,6 +300,7 @@
                             4.4
                         </div>
                         <p class="address">Thatipur</p>
+                        <p class="price">₹3000</p>
                     </div>
                 </div>
 
@@ -264,6 +314,7 @@
                             4.4
                         </div>
                         <p class="address">Govindpuri</p>
+                        <p class="price">₹3150</p>
                     </div>
 
                 </div>
@@ -356,6 +407,36 @@
         <p>Experience the joy of authentic veg cooking delivered straight to your door.</p>
         <p class="copyright">&copy; Tiffin Trail. All Rights Reserved.</p>
     </footer>
+
+
+    <script>
+        let bodytag = document.querySelector("body");
+        let plan_card = document.querySelectorAll(".plan-card");
+        let display_f;
+
+        plan_card.forEach(function (card) {
+            card.addEventListener("click", function(){
+                display_f = document.getElementById("full-plan");
+                display_f.style.display = "flex";
+                
+                document.querySelector("main").style.visibility = "hidden";
+
+                document.querySelector("footer").style.display = "none";
+                
+            })
+        })
+
+        let xMark = document.querySelector(".fa-xmark");
+        
+        xMark.onclick = () => {
+            display_f.style.display = "none";
+
+            document.querySelector("main").style.visibility = "visible";
+
+            document.querySelector("footer").style.display = "block";
+
+        }
+    </script>
 
 </body>
 

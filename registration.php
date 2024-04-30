@@ -10,13 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit(); // Stop further execution
     }
 
-    $server = "localhost";
-    $user = "root";
-    $pass = "";
-    $db = "tiffintrail";
-    $conn = "";
-
-    $conn = mysqli_connect($server, $user, $pass, $db);
+    include ('databaseConnect.php'); // connecting to database
 
     if (isset($_POST["role"])) {
         $firstName = filter_input(INPUT_POST, "F_name", FILTER_SANITIZE_SPECIAL_CHARS);
