@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $M_no = $_POST["mobile_number"];
         $password = password_hash(filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS), PASSWORD_DEFAULT);
         $C_pass = filter_input(INPUT_POST, "C_password", FILTER_SANITIZE_SPECIAL_CHARS);
+        $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
         $role = $_POST["role"];
 
         try {
@@ -114,6 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="input-group">
                             <i class='bx bxs-lock-alt'></i>
                             <input type="password" placeholder="Confirm password" name="C_password" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="text" placeholder="Enter Your Address" name="address" maxlength="20" required>
                         </div>
                         <div class="input-group radio">
                             <input type="radio" name="role" value="Customer" required>

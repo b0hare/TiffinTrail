@@ -1,27 +1,27 @@
-<?php 
-    include ('databaseConnect.php');
+<?php
+include('databaseConnect.php');
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $code = 'ABCD10';
-        $p_name = $_POST['p_name'];
-        $p_price = $_POST['p_price'];
-        $p_description = $_POST['p_description'];
-        $p_url = $_POST['planImageURL'];
-        $category = $_POST['category'];
-        $tastePreference = $_POST['tastePreference'];
+    $code = 'ABCD45';
+    $p_name = $_POST['p_name'];
+    $p_Wprice = $_POST['p_Wprice'];
+    $p_Mprice = $_POST['p_Mprice'];
+    $p_description = $_POST['p_description'];
+    $p_url = $_POST['planImageURL'];
+    $category = $_POST['category'];
+    $tastePreference = $_POST['tastePreference'];
 
-        $sql = "INSERT INTO `plan`(`code`, `plan_name`, `plane_price`, `p_Description`, `url`, `category`, `Taste_preference`) VALUES ('$code','$p_name','$p_price','$p_description','$p_url','$category','$tastePreference')";
+    $sql = "INSERT INTO `plan`(`code`, `plan_name`, `WeeklyPrice`, `MonthlyPrice`, `p_Description`, `url`, `category`, `Taste_preference`) VALUES ('$code','$p_name','$p_Wprice', '$p_Mprice' ,'$p_description','$p_url','$category','$tastePreference')";
 
-        $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
 
-        if($result){
-            echo "Plan Added Successfully!";
-        }
-        else{
-            echo "Failed!";
-        }
+    if ($result) {
+        echo "Plan Added Successfully!";
+    } else {
+        echo "Failed!";
     }
+}
 ?>
 
 
@@ -45,17 +45,19 @@
         <div class="plan">
             <label for="planName">Plan Name:</label>
             <input type="text" id="planName" name="p_name" required>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="p_price" required>
+
+            <label for="Wprice">Weekly Price:</label>
+            <input type="number" id="Wprice" name="p_Wprice" required>
+
+            <label for="Mprice">Monthly Price:</label>
+            <input type="number" id="Mprice" name="p_Mprice" required>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="p_description" rows="4" placeholder="Enter food items with their qantity. For Ex- 1 Bowl Daal, 6 Roti.. "
-                required></textarea>
+            <textarea id="description" name="p_description" rows="4" placeholder="Enter food items with their qantity. For Ex- 1 Bowl Daal, 6 Roti.. " required></textarea>
 
             <div id="planImg">
                 <label for="planImageURL">Image URL:</label>
-                <input type="text" id="planImageURL" name="planImageURL" placeholder="Enter image url(link)"
-                    required>
+                <input type="text" id="planImageURL" name="planImageURL" placeholder="Enter image url(link)" required>
                 <a href="https://postimages.org/#google_vignette" target="_blank">Click and upload image to get url</a>
             </div>
 

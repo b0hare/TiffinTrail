@@ -14,244 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
 
-    <style>
-        * {
-            font-family: "Open Sans", sans-serif;
-            font-weight: 400;
-            box-sizing: border-box;
-        }
-
-        .primary,
-        .secondary {
-            font-family: "Cabin", sans-serif;
-        }
-
-        p {
-            font-family: "Raleway", sans-serif;
-        }
-
-        .hero_section::before {
-            content: "";
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            opacity: 0.9;
-            z-index: -1;
-            animation: changeBg 6s infinite normal;
-        }
-
-        @keyframes changeBg {
-            0% {
-                background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_0.jpg) no-repeat center/cover;
-            }
-
-            25% {
-                background: url(./images/Hero_image.png) no-repeat center/cover;
-            }
-
-            50% {
-                background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_1.jpg) no-repeat center/cover;
-
-            }
-
-            75% {
-                background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_3.jpg) no-repeat center/cover;
-
-            }
-
-            100% {
-                background: url(https://img.freepik.com/premium-vector/green-courier-online-food-delivery-vector-illustration_723710-15.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais) no-repeat center/cover;
-            }
-        }
-
-        .hero_section {
-            height: 70vh;
-            width: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        nav {
-            position: sticky !important;
-            top: 0;
-            width: 100%;
-            padding-inline: clamp(30px, 5vw, 50px) !important;
-        }
-
-        nav .fas {
-            cursor: pointer;
-            color: #000000;
-            padding: 0 2px;
-            font-size: 1rem;
-            transition: all .2s ease-in-out;
-        }
-
-
-        nav .fas:hover {
-            transform: scale(1.1);
-        }
-
-        .hero_content,
-        .hero_text {
-            display: flex;
-            align-items: center;
-        }
-
-        .hero_content {
-            justify-content: space-around;
-            padding: 0 20px;
-            margin: clamp(100px, 6vw, 200px) 0;
-        }
-
-        .hero_text {
-            flex-direction: column;
-            margin: 30px 0 0;
-            gap: 10px;
-            text-align: center;
-        }
-
-        .hero_text p {
-            font-weight: 600;
-            color: #000000;
-            font-size: clamp(16px, 3vw, 1.2rem);
-        }
-
-        .primary {
-            color: #3A7F00;
-            font-size: clamp(32px, 5vw, 64px);
-            font-weight: 900;
-            letter-spacing: 0.1em;
-        }
-
-        .WName {
-            font-size: clamp(60px, 7vw, 80px);
-        }
-
-        .primary span {
-            color: black;
-            display: block;
-        }
-
-        /* Orders and Subscription  Section  */
-
-        #ordersNsubs {
-            position: relative;
-            gap: 2rem;
-        }
-
-        .no-of-subs {
-            right: 30%;
-        }
-
-        /* order div  */
-
-        .orders {
-            height: 45vh;
-            overflow-x: auto;
-        }
-
-        .order {
-            gap: 10px;
-            background-color: #f5f5f5;
-        }
-
-        .order img {
-            min-width: 150px;
-        }
-
-        /* subscribers div  */
-
-        .no-of-orders, .no-of-subs{
-            text-align: center;
-        }
-
-        .Subscribers {
-            height: 45vh;
-            overflow-x: auto;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .subscriber {
-            width: 100%;
-            background-color: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-        }
-
-        .subscriber img {
-            width: 100%;
-            max-width: 150px;
-            mix-blend-mode: multiply;
-        }
-
-
-        /* plan section  */
-
-        #plan_section {
-            position: relative;
-        }
-
-        .plans {
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .plan {
-            max-width: 350px;
-            background-color: #f5f5f5;
-        }
-
-        .plan img {
-            width: 100%;
-            min-width: 150px;
-        }
-
-        .plan-name {
-            font-size: clamp(20px, 3vw, 1.6rem);
-        }
-
-        .plans .btn {
-            background-color: #fff;
-            color: #3A7F00;
-            position: absolute;
-            top: 60px;
-            right: 10px;
-            font-size: .8rem;
-            border: 2px solid #3A7F00;
-            font-weight: 600;
-            transition: all .2s ease-in-out;
-        }
-
-        .plans .btn:hover {
-            color: #fff;
-            background-color: #3A7F00;
-        }
-
-
-        /* media query screen < 700px  */
-
-        @media only screen and (max-width: 700px){
-
-            #ordersNsubs{
-                display: block !important;
-            }
-
-            .plans{
-                height: 70vh;
-                flex-wrap: wrap;
-                overflow-x: auto;
-            }
-
-            .plan{
-                max-width: calc(100% - 50px);
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="chef.css">
 
 </head>
 
@@ -282,11 +45,9 @@
 
     <!-- Orders and Subs..  -->
 
-    <section id="ordersNsubs" class="d-flex mx-3 my-5">
+    <section id="orders_section" class="d-flex mx-3 my-5 pt-5">
 
-        <div id="orders_section">
-
-            <h3 class="no-of-orders tertiary">Today's Order ☛ 4</h3>
+            <h2 class="no-of-orders secondary">Today's Order ☛ <span>4</span></h2>
 
             <div class="orders my-5">
 
@@ -344,10 +105,10 @@
 
             </div>
 
-        </div>
+    </section>
 
-        <div id="subs_section">
-            <h3 class="no-of-subs tertiary">Your Subscribers ☛ 7</h3>
+        <section id="subs_section">
+            <h2 class="no-of-subs secondary">Your Subscribers ☛ <span>4</span></h2>
 
             <div class="Subscribers d-flex my-5">
 
@@ -396,18 +157,55 @@
                 </div>
 
             </div>
-        </div>
 
     </section>
 
 
     <!-- plans section  -->
 
-    <section id="plan_section" class="mx-3 my-5 py-2">
+    <section id="plan_section" class="mx-3 my-5 pt-2 pb-5">
 
         <h2 class="secondary my-5">Your Plans</h2>
         <div class="plans d-flex">
 
+        <?php
+            include ("databaseConnect.php");
+            $query = "SELECT * FROM `plan`";
+            $result = $conn->query($query);
+
+            while ($row = $result->fetch_assoc()) {
+                
+            ?>
+            <div class="plan">
+
+                <img src="<?php echo $row['url'] ?>"
+                    alt="">
+
+                <div class="plan-details">
+                    <p class="plan-name"><?php echo $row['plan_name'] ?></p>
+                    <p class="plan-desc"><?php echo $row['p_Description'] ?></p>
+                    <p class="plan-price">₹<?php echo $row['MonthlyPrice'] ?></p>
+                </div>
+
+            </div>
+            <?php
+            }
+            ?>
+
+            <!-- <div class="plan">
+
+                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
+                    alt="">
+
+                <div class="plan-details">
+                    <p class="plan-name">The Unique Seven</p>
+                    <p class="plan-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quia minima
+                        tempore fugiat, quidem vel?</p>
+                    <p class="plan-price">₹2900</p>
+                </div>
+
+            </div>
+
             <div class="plan">
 
                 <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
@@ -434,41 +232,39 @@
                     <p class="plan-price">₹2900</p>
                 </div>
 
-            </div>
-
-            <div class="plan">
-
-                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
-                    alt="">
-
-                <div class="plan-details">
-                    <p class="plan-name">Green Diet</p>
-                    <p class="plan-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quia minima
-                        tempore fugiat, quidem vel?</p>
-                    <p class="plan-price">₹2400</p>
-                </div>
-
-            </div>
-
-            <div class="plan">
-
-                <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg"
-                    alt="">
-
-                <div class="plan-details">
-                    <p class="plan-name">The Unique Seven</p>
-                    <p class="plan-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quia minima
-                        tempore fugiat, quidem vel?</p>
-                    <p class="plan-price">₹2900</p>
-                </div>
-
-            </div>
+            </div> -->
 
             <button class="btn">See All</button>
 
         </div>
 
     </section>
+
+    <!-- Footer  -->
+
+    <footer class="footer">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social-icon">
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a></li>
+        </ul>
+        <p>&copy;2024 Tiffin Trail | All Rights Reserved</p>
+    </footer>
 
 
     <script>

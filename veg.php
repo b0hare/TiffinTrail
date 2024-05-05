@@ -77,7 +77,31 @@
             <h2>Home-Cooked Meal Plans</h2>
             <div class="plan-grid">
 
+            <?php 
+            include ("databaseConnect.php");
+            $query = "SELECT * FROM `plan`";
+            $result = $conn->query($query);
+
+            while($row = $result->fetch_assoc()){
+                ?>
                 <div class="plan-card">
+                    <img src="<?php echo $row['url'] ?>" alt="Veg plan 1">
+
+                    <div class="plan-details">
+                        <p class="plan-name"><?php echo $row['plan_name'] ?></p>
+                        <div class="rating">
+                            <div class="r-circle"><i class="fa-solid fa-star"></i></div>
+                            4.4
+                        </div>
+                        <p class="address">ChetakPuri</p>
+                        <p class="price">₹<?php echo $row['MonthlyPrice'] ?></p>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+
+                <!-- <div class="plan-card">
                     <img src="https://img-global.cpcdn.com/recipes/ce884d070a8abf57/1200x630cq70/photo.jpg" alt="Veg plan 1">
 
                     <div class="plan-details">
@@ -145,7 +169,7 @@
                         <p class="address">Naka Chandravadni</p>
                         <p class="price">₹2900</p>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </section>

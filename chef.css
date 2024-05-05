@@ -1,0 +1,364 @@
+* {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.primary,
+.secondary {
+    font-family: "Cabin", sans-serif;
+}
+
+.secondary{
+    color: #FC8019;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+p {
+    font-family: "Raleway", sans-serif;
+}
+
+.hero_section::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0.9;
+    z-index: -1;
+    animation: changeBg 6s infinite normal;
+}
+
+@keyframes changeBg {
+    0% {
+        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_0.jpg) no-repeat center/cover;
+    }
+
+    25% {
+        background: url(./images/Hero_image.png) no-repeat center/cover;
+    }
+
+    50% {
+        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_1.jpg) no-repeat center/cover;
+
+    }
+
+    75% {
+        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_3.jpg) no-repeat center/cover;
+
+    }
+
+    100% {
+        background: url(https://img.freepik.com/premium-vector/green-courier-online-food-delivery-vector-illustration_723710-15.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais) no-repeat center/cover;
+    }
+}
+
+.hero_section {
+    height: 70vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+nav {
+    position: sticky !important;
+    top: 0;
+    width: 100%;
+    padding-inline: clamp(30px, 5vw, 50px) !important;
+}
+
+nav .fas {
+    cursor: pointer;
+    color: #000000;
+    padding: 0 2px;
+    font-size: 1rem;
+    transition: all .2s ease-in-out;
+}
+
+
+nav .fas:hover {
+    transform: scale(1.1);
+}
+
+.hero_content,
+.hero_text {
+    display: flex;
+    align-items: center;
+}
+
+.hero_content {
+    justify-content: space-around;
+    padding: 0 20px;
+    margin: clamp(100px, 6vw, 200px) 0;
+}
+
+.hero_text {
+    flex-direction: column;
+    margin: 30px 0 0;
+    gap: 10px;
+    text-align: center;
+}
+
+.hero_text p {
+    font-weight: 600;
+    color: #000000;
+    font-size: clamp(16px, 3vw, 1.2rem);
+}
+
+.primary {
+    color: #3A7F00;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+}
+
+.WName {
+    font-size: clamp(60px, 7vw, 80px);
+}
+
+.primary span {
+    color: black;
+    display: block;
+}
+
+/* Orders Section  */
+
+#orders_section{
+    flex-direction: column;
+    align-items: center;
+}
+
+.orders {
+    height: 45vh;
+    overflow-x: auto;
+}
+
+.order {
+    width: 100%;
+    gap: 10px;
+    background-color: #f5f5f5;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+}
+
+.order img {
+    width: 25%;
+    min-width: 180px;
+}
+
+/* subscribers section */
+
+#subs_section{
+    width: 80%;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.secondary span{
+    color: #000;
+    font-weight: 600;
+}
+.Subscribers {
+    height: 45vh;
+    overflow-x: auto;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.subscriber {
+    width: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.subscriber img {
+    width: 100%;
+    max-width: 150px;
+    mix-blend-mode: multiply;
+}
+
+
+/* plan section  */
+
+#plan_section {
+    position: relative;
+}
+
+.plans {
+    gap: 10px;
+    justify-content: center;
+}
+
+.plan {
+    max-width: 350px;
+    background-color: #f5f5f5;
+}
+
+.plan img {
+    width: 100%;
+    min-width: 150px;
+    height: 100%;
+    max-height: 180px;
+}
+
+.plan-details{
+    padding: 10px;
+}
+
+.plan-name {
+    font-size: clamp(20px, 3vw, 1.6rem);
+}
+
+.plans .btn {
+    background-color: #fff;
+    color: #3A7F00;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    font-size: .8rem;
+    border: 2px solid #3A7F00;
+    font-weight: 600;
+    transition: all .2s ease-in-out;
+}
+
+.plans .btn:hover {
+    color: #fff;
+    background-color: #3A7F00;
+}
+
+
+/* Footer section  */
+
+.footer {
+    position: relative;
+    background: #A1D463;
+    min-height: 100px;
+    padding: 5px 50px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8rem;
+}
+
+.social-icon {
+    width: 40%;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.social-icon__item{
+    list-style: none;
+}
+
+.social-icon__link {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.social-icon__link:hover {
+    transform: translateY(-10px);
+}
+
+.footer p {
+    color: #fff;
+    margin: 15px 0 10px 0;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.wave {
+    position: absolute;
+    top: -80px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: url("images/Wave.jpg");
+    background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animate 3s linear infinite;
+}
+
+
+@keyframes animateWaves {
+    0% {
+        background-position-x: 1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: -1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
+}
+
+
+/* media query screen < 700px  */
+
+@media only screen and (max-width: 700px){
+
+    #ordersNsubs{
+        display: block !important;
+    }
+
+    .plans{
+        height: 70vh;
+        flex-wrap: wrap;
+        overflow-x: auto;
+        gap: 1.5rem;
+    }
+
+    .plan{
+        max-width: calc(100% - 50px);
+        margin-bottom: 20px;
+    }
+}

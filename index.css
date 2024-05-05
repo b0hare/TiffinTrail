@@ -508,6 +508,7 @@ hr {
     margin: 15px 0 10px 0;
     font-size: 1rem;
     font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .wave {
@@ -548,9 +549,6 @@ hr {
     animation: animate 3s linear infinite;
 }
 
-.footer p {
-    letter-spacing: 1px;
-}
 
 @keyframes animateWaves {
     0% {
