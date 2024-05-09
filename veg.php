@@ -35,40 +35,11 @@
     <main>
 
 
-    <!-- Full plan  -->
+        <!-- Full plan  -->
+
 
         <div id="full-plan">
 
-            <div class="plan-card">
-                <img src="https://img-global.cpcdn.com/recipes/ce884d070a8abf57/1200x630cq70/photo.jpg" alt="Veg plan 1">
-
-                <div class="plan-details">
-                    <p class="plan-name">Veg Thali</p>
-                    <div class="rating">
-                        <div class="r-circle"><i class="fa-solid fa-star"></i></div>
-                        4.4
-                    </div>
-                    <p class="address">ChetakPuri</p>
-                    <div class="prices">
-                    <p>Weekly: &ThickSpace;<span class="price">₹900</span></p>
-                    <p>Monthly: <span class="price">₹3200</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="includes">
-                <h2>Tiffin Box Includes</h2>
-                <ul>
-                    <li>➛ 1 Daal</li>
-                    <li>➛ 1 Curry</li>
-                    <li>➛ 4 Rotis</li>
-                    <li>➛ 1 Rice Bowl or 4 more Rotis</li>
-                    <li>➛ Salad,Raita, Achaar, Desert</li>
-                </ul>
-                <p>Two times a day (1 Item/day)</p>
-                <button id="buy">Buy</button>
-            </div>
-            <i class="fa-solid fa-xmark"></i>
         </div>
 
         <!-- Home-cooked section  -->
@@ -77,99 +48,29 @@
             <h2>Home-Cooked Meal Plans</h2>
             <div class="plan-grid">
 
-            <?php 
-            include ("databaseConnect.php");
-            $query = "SELECT * FROM `plan`";
-            $result = $conn->query($query);
-
-            while($row = $result->fetch_assoc()){
-                ?>
-                <div class="plan-card">
-                    <img src="<?php echo $row['url'] ?>" alt="Veg plan 1">
-
-                    <div class="plan-details">
-                        <p class="plan-name"><?php echo $row['plan_name'] ?></p>
-                        <div class="rating">
-                            <div class="r-circle"><i class="fa-solid fa-star"></i></div>
-                            4.4
-                        </div>
-                        <p class="address">ChetakPuri</p>
-                        <p class="price">₹<?php echo $row['MonthlyPrice'] ?></p>
-                    </div>
-                </div>
                 <?php
-            }
-            ?>
+                include("databaseConnect.php");
+                $query = "SELECT * FROM `plan`";
+                $result = $conn->query($query);
 
-                <!-- <div class="plan-card">
-                    <img src="https://img-global.cpcdn.com/recipes/ce884d070a8abf57/1200x630cq70/photo.jpg" alt="Veg plan 1">
+                while ($row = $result->fetch_assoc()) {
+                ?>
+                    <div class="plan-card" onclick="fetchPlan('<?php echo $row['code'] ?>')">
+                        <img src="<?php echo $row['url'] ?>" alt="Veg plan 1">
 
-                    <div class="plan-details">
-                        <p class="plan-name">Veg Thali</p>
-                        <div class="rating">
-                            <div class="r-circle"><i class="fa-solid fa-star"></i></div>
-                            4.4
+                        <div class="plan-details">
+                            <p class="plan-name"><?php echo $row['plan_name'] ?></p>
+                            <div class="rating">
+                                <div class="r-circle"><i class="fa-solid fa-star"></i></div>
+                                4.4
+                            </div>
+                            <p class="address">ChetakPuri</p>
+                            <p class="price">₹<?php echo $row['MonthlyPrice'] ?></p>
                         </div>
-                        <p class="address">ChetakPuri</p>
-                        <p class="price">₹3200</p>
                     </div>
-                </div>
-
-                <div class="plan-card">
-                    <img src="https://www.aheadofthyme.com/wp-content/uploads/2021/11/vegetarian-chili-7-683x1024.jpg" alt="Veg plan 2">
-
-                    <div class="plan-details">
-                        <p class="plan-name">Rajma</p>
-                        <div class="rating">
-                            <div class="r-circle"><i class="fa-solid fa-star"></i></div>
-                            4.4
-                        </div>
-                        <p class="address">Naka Chandravadni</p>
-                        <p class="price">₹2900</p>
-                    </div>
-                </div>
-
-                <div class="plan-card">
-                    <img src="https://i.ytimg.com/vi/CbiLHBLWA7U/maxresdefault.jpg" alt="Veg plan 1">
-
-                    <div class="plan-details">
-                        <p class="plan-name">Dal Roti</p>
-                        <div class="rating">
-                            <div class="r-circle"><i class="fa-solid fa-star"></i></div>
-                            4.4
-                        </div>
-                        <p class="address">Bada Market</p>
-                        <p class="price">₹3000</p>
-                    </div>
-                </div>
-
-                <div class="plan-card">
-                    <img src="https://img-global.cpcdn.com/recipes/ce884d070a8abf57/1200x630cq70/photo.jpg" alt="Veg plan 1">
-
-                    <div class="plan-details">
-                        <p class="plan-name">Veg Thali</p>
-                        <div class="rating">
-                            <div class="r-circle"><i class="fa-solid fa-star"></i></div>
-                            4.4
-                        </div>
-                        <p class="address">ChetakPuri</p>
-                        <p class="price">₹3200</p>
-                    </div>
-                </div>
-
-                <div class="plan-card">
-                    <img src="https://www.aheadofthyme.com/wp-content/uploads/2021/11/vegetarian-chili-7-683x1024.jpg" alt="Veg plan 2">
-
-                    <div class="plan-details">
-                        <p class="plan-name">Rajma</p>
-                        <div class="rating">
-                            <div class="r-circle"><i class="fa-solid fa-star"></i></div>
-                            4.4
-                        </div>
-                        <p class="address">Naka Chandravadni</p>
-                        <p class="price">₹2900</p>
-                    </div>
-                </div> -->
+                <?php
+                }
+                ?>
 
             </div>
         </section>
@@ -434,31 +335,42 @@
 
 
     <script>
-        let bodytag = document.querySelector("body");
-        let plan_card = document.querySelectorAll(".plan-card");
-        let display_f;
+        let full_plan = document.getElementById('full-plan');
 
-        plan_card.forEach(function (card) {
-            card.addEventListener("click", function(){
-                display_f = document.getElementById("full-plan");
-                display_f.style.display = "flex";
-                
-                document.querySelector("main").style.visibility = "hidden";
+        function fetchPlan(value) {
 
-                document.querySelector("footer").style.display = "none";
-                
+            let fetch_plan = new XMLHttpRequest();
+            fetch_plan.open('GET', 'fetch_fullPlan.php?fetch_plan=true&code=' + value, true);
+            fetch_plan.send();
+
+            fetch_plan.onreadystatechange = (() => {
+                if (fetch_plan.readyState == 4 && fetch_plan.status == 200) {
+                    full_plan.innerHTML = fetch_plan.responseText;
+
+                    full_plan.style.display = "flex";
+
+                    document.querySelector("main").style.visibility = "hidden";
+
+                    document.querySelector("footer").style.display = "none";
+                }
+
+                let iconElement = document.createElement("i");
+
+                iconElement.classList.add("fa-solid", "fa-xmark");
+
+                full_plan.appendChild(iconElement);
+
+                let xMark = document.querySelector(".fa-xmark");
+
+                xMark.onclick = () => {
+                    full_plan.style.display = "none";
+
+                    document.querySelector("main").style.visibility = "visible";
+
+                    document.querySelector("footer").style.display = "block";
+
+                }
             })
-        })
-
-        let xMark = document.querySelector(".fa-xmark");
-        
-        xMark.onclick = () => {
-            display_f.style.display = "none";
-
-            document.querySelector("main").style.visibility = "visible";
-
-            document.querySelector("footer").style.display = "block";
-
         }
     </script>
 

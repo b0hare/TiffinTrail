@@ -69,14 +69,8 @@ main {
   margin: 0 0 2rem 0;
 }
 
-.includes ul {
-  line-height: 2;
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-
-.includes ul li {
-  list-style: none;
+.includes .itemPerDay{
+  margin: 22px 0;
 }
 
 .fa-xmark{
