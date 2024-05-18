@@ -109,7 +109,6 @@ a {
 nav ul li a {
     text-transform: uppercase;
     letter-spacing: 0.07em;
-
     display: inline-block;
     padding: 5px 0;
     position: relative;
@@ -350,7 +349,7 @@ hr {
     margin: 5rem 0 !important;
 }
 
-#about{
+#about {
     margin-bottom: 10rem !important;
 }
 
@@ -584,11 +583,11 @@ hr {
         display: none;
     }
 
-    .hero_content{
+    .hero_content {
         margin-top: 250px;
     }
 
-    #tag_line{
+    #tag_line {
         font-size: 1rem;
     }
 
@@ -621,40 +620,56 @@ hr {
 
 }
 
-    /* Media query  */
+/* Media query  */
 
-    @media only screen and (max-width: 760px) {
+@media only screen and (max-width: 760px) {
 
-        nav {
-            justify-content: space-between;
-        }
+    nav {
+        justify-content: space-between;
+    }
 
-        nav .right {
-            margin-right: .8rem;
-            gap: 3rem;
-        }
+    nav .right {
+        margin-right: .8rem;
+        gap: 3rem;
+    }
 
 
-        #bar {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-        }
+    #bar {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+    }
 
-        nav .left ul {
-            display: none;
-        }
+    nav .left ul {
+        display: none;
+        position: absolute;
+        right: 100px;
+        top: 30px;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        line-height: 2;
+    }
 
-        .right input,
-        button {
-            display: none;
-        }
-
-        .right .fa-bars {
-            display: inline;
-            cursor: pointer;
-        }
-
+    nav .left ul li a {
+        color: #fff;
 
     }
+
+    .display_b {
+        display: block !important;
+    }
+
+    .right input,
+    button {
+        display: none;
+    }
+
+    .right .fa-bars {
+        display: inline;
+        cursor: pointer;
+    }
+
+
+}

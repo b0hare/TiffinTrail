@@ -29,7 +29,10 @@
                     Tiffin Trail
                 </a>
 
+                <div class="navRight">
+                <a href="plan.php" class="addPlan">Add Plan</a>
                 <i class="fas fa-user"></i>
+                </div>
             </div>
         </nav>
 

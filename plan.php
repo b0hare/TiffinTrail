@@ -3,7 +3,7 @@ include('databaseConnect.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $code = 'ABCD45';
+    $code = 'ABCD47';
     $p_name = $_POST['p_name'];
     $p_Wprice = $_POST['p_Wprice'];
     $p_Mprice = $_POST['p_Mprice'];

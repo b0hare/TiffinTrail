@@ -1,4 +1,6 @@
 <?php
+
+    session_start();
     if(isset($_GET['fetch_plan'])){
 
         include ("databaseConnect.php");
@@ -35,9 +37,18 @@
                 <h2>Tiffin Box Includes</h2>
                 <p>➛<?php echo $row['p_Description'] ?></p>
                 <p class="itemPerDay">Two times a day (1 Item/day)</p>
-                <button id="buy">Buy</button>
+                <button id="buy" onclick="purchasePlan()">Buy</button>
             </div>
         <?php
         }
+    }
+
+
+    if(isset($_GET['purchase'])){
+        if(!isset($_SESSION["username"])){
+            echo "helfkl;ajfklj";
+            header("Location: registration.php");
+        }
+        exit();
     }
 ?>

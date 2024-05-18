@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST["role"])) {
         $firstName = filter_input(INPUT_POST, "F_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $lastName = filter_input(INPUT_POST, "L_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = $_POST["email"];
         $M_no = $_POST["mobile_number"];
         $password = password_hash(filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS), PASSWORD_DEFAULT);
         $C_pass = filter_input(INPUT_POST, "C_password", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -28,15 +29,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($conn) {
-            $sql = "INSERT INTO users(First_Name, Last_Name, Mobile_Number, Password, Role)
-            VALUES  ('$firstName', '$lastName', '$M_no', '$password', '$role')";
+            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, Role)
+            VALUES  ('$firstName', '$lastName', '$email', '$M_no', '$password', '$role')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 // echo "Registration Successfull!";
                 $_SESSION["username"] = $firstName;
 
-                header("Location: user.php");
+                $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
+                $F_result = mysqli_query($conn, $fetchRole);
+
+                if($F_result){
+                    $F_row = mysqli_fetch_assoc($F_result);
+
+                    if($F_row['Role'] == "Customer"){
+                        header("Location: user.php");
+                    }
+                    else{
+                        header("Location: chef.php");
+                    }
+                }
+                
             } else {
                 echo "Sorry! Failed to register.";
             }
@@ -59,7 +73,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     $_SESSION["username"] = $row['First_Name'];
 
-                    header("Location: user.php");
+                    $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
+                $F_result = mysqli_query($conn, $fetchRole);
+
+                if($F_result){
+                    $F_row = mysqli_fetch_assoc($F_result);
+
+                    if($F_row['Role'] == "Customer"){
+                        header("Location: user.php");
+                    }
+                    else{
+                        header("Location: chef.php");
+                    }
+                }
                 } else {
                     echo "Incorrect Password!";
                 }
@@ -103,6 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="input-group">
                             <i class='bx bxs-user'></i>
                             <input type="text" placeholder="Last Name" name="L_name" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bx-mail-send'></i>
+                            <input type="email" placeholder="Your Email" name="email" required>
                         </div>
                         <div class="input-group">
                             <i class='bx bx-mail-send'></i>

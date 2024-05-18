@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+// $username = $_SESSION["username"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +56,7 @@
 
                 <?php
                 include("databaseConnect.php");
-                $query = "SELECT * FROM `plan`";
+                $query = "SELECT * FROM `plan` WHERE category = 'vegetarian'";
                 $result = $conn->query($query);
 
                 while ($row = $result->fetch_assoc()) {
@@ -372,6 +378,23 @@
                 }
             })
         }
+    </script>
+
+    <script>
+        console.log("dfd");
+        purchasePlan = (() => {
+            let purchase = new XMLHttpRequest();
+            purchase.open('GET', 'fetch_fullPlan.php?purchase=true&code=', true);
+            purchase.send();
+
+            purchase.onreadystatechange = (() => {
+                if (purchase.readyState == 4 && purchase.status == 200) {
+                    // full_plan.innerHTML = purchase.responseText;
+
+                    console.log("hello");
+                }
+            })
+        })
     </script>
 
 </body>

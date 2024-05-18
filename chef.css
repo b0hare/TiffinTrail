@@ -66,7 +66,7 @@ nav {
     position: sticky !important;
     top: 0;
     width: 100%;
-    padding-inline: clamp(30px, 5vw, 50px) !important;
+    padding-inline: clamp(10px, 3vw, 50px) !important;
 }
 
 nav .fas {
@@ -75,6 +75,40 @@ nav .fas {
     padding: 0 2px;
     font-size: 1rem;
     transition: all .2s ease-in-out;
+}
+
+.navRight{
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.addPlan{
+    color: #000;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+}
+
+.addPlan::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    background-color: #FC8019;
+    height: 2px;
+    width: 0%;
+    transition: all .2s ease-in-out;
+}
+
+.addPlan:hover::after{
+    width: 70%;
+    left: 0%;
+}
+
+.addPlan:hover{
+    color: #FC8019;
 }
 
 
@@ -358,7 +392,7 @@ nav .fas:hover {
     }
 
     .plan{
-        max-width: calc(100% - 50px);
+        /* max-width: calc(100% - 50px); */
         margin-bottom: 20px;
     }
 }
