@@ -91,15 +91,18 @@ session_start();
             <h2>Home Cooks</h2>
             <div class="chef-grid">
 
-            <?php
-                $query = "SELECT * FROM `users` WHERE serviceType = 'Individual'";
-                ;
+                <?php
+
+                $query = "SELECT p.*, u.* 
+                FROM `plan` p
+                JOIN `users` u ON p.user_id = u.Id
+                WHERE p.category = 'veg'";
+
                 $result = $conn->query($query);
 
                 while ($row = $result->fetch_assoc()) {
                 ?>
                     <div class="chef-card">
-                    <!-- onclick="fetchPlan('<?php echo $row['id'] ?>')" -->
                         <img src="<?php echo $row['url'] ?>" alt="chef-img">
 
                         <div class="chef-details">
@@ -108,7 +111,7 @@ session_start();
                                 <div class="r-circle"><i class="fa-solid fa-star"></i></div>
                                 4.4
                             </div>
-                            <p class="address"><?php echo $row['address'] ?></p>
+                            <p class="address"><?php echo $row['Address'] ?></p>
                         </div>
                     </div>
                 <?php
@@ -123,7 +126,7 @@ session_start();
                             <div class="r-circle"><i class="fa-solid fa-star"></i></div>
                             4.6
                         </div>
-                        <p class="address"><?php echo $row['address'] ?></p>
+                        <p class="address">Chetakpuri</p>
                     </div>
 
                 </div>

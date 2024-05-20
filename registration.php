@@ -23,13 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Passwords do not match.";
             exit();
         }
-        
+
         $M_no = $_POST["mobile_number"];
         $password = password_hash(filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS), PASSWORD_DEFAULT);
         $C_pass = filter_input(INPUT_POST, "C_password", FILTER_SANITIZE_SPECIAL_CHARS);
         $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
         $role = $_POST["role"];
         $ServiceType = $_POST["ServiceType"];
+        $gender = $_POST['gender'];
+
+        if ($gender == 'male') {
+            $profileImg = 'path/to/default_male_image.jpg';
+        } else if ($gender == 'female') {
+            $profileImg = 'path/to/default_female_image.jpg';
+        } else {
+            $profileImg = 'path/to/default_image.jpg'; 
+        }
 
         try {
             $conn = mysqli_connect($server, $user, $pass, $db);
@@ -38,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($conn) {
-            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, address, Role, ServiceType)
-            VALUES  ('$firstName', '$lastName', '$email', '$M_no', '$password', '$address', '$role', '$ServiceType')";
+            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, address,ProfileImg, Role, ServiceType)
+            VALUES  ('$firstName', '$lastName', '$email', '$M_no', '$password', '$address','$profileImg' ,'$role', '$ServiceType')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
@@ -82,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     $_SESSION["username"] = $row['First_Name'];
                     $_SESSION["mobile_number"] = $M_no;
-                    
+
 
                     $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
                     $F_result = mysqli_query($conn, $fetchRole);
@@ -160,12 +169,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <i class='bx bxs-lock-alt'></i>
                             <input type="text" placeholder="Enter Your Address" name="address" maxlength="20" required>
                         </div>
-                        <!-- <div class="input-group radio">
-                            <input type="radio" name="role" value="Customer" required>
-                            <label>Customer</label>
-                            <input type="radio" name="role" value="Service Provider" required>
-                            <label>Service Provider</label>
-                        </div> -->
+
+                        <!-- Role -->
 
                         <div class="input-group radio">
                             <input type="radio" name="role" value="Customer" id="customerRadio" required>
@@ -178,13 +183,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3>How would you serve:</h3>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="ServiceType" value="Individual"> Individual
+                                    <input type="radio" name="ServiceType" value="Individual" id="Individual"> Individual
                                 </label>
                                 <label>
-                                    <input type="radio" name="ServiceType" value="Business"> Business
+                                    <input type="radio" name="ServiceType" value="Business" id="Business"> Business
                                 </label>
                             </div>
                         </div>
+
+                        <!-- Gender  -->
+
+                        <div id="IndividualOptions" class="hiddenGenders">
+                            <h3>Gender:</h3>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="Gender" value="Male"> Male
+                                </label>
+                                <label>
+                                    <input type="radio" name="Gender" value="Female"> Female
+                                </label>
+                                <label>
+                                    <input type="radio" name="Gender" value="Other"> Other
+                                </label>
+                            </div>
+                        </div>
+
+
 
                         <input class="submit" type="submit" value="Sign up" name="SignUp">
 
@@ -324,18 +348,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const serviceProviderRadio = document.getElementById('serviceProviderRadio');
             const customerRadio = document.getElementById('customerRadio');
             const serviceProviderOptions = document.getElementById('serviceProviderOptions');
+            const IndividualOptions = document.getElementById('IndividualOptions');
+            const Individual = document.getElementById('Individual');
+            const Business = document.getElementById('Business');
 
             serviceProviderRadio.addEventListener('change', function() {
                 if (serviceProviderRadio.checked) {
                     serviceProviderOptions.classList.remove('hiddenServices');
+                    IndividualOptions.classList.add('hiddenGenders');
                 }
             });
 
             customerRadio.addEventListener('change', function() {
                 if (customerRadio.checked) {
                     serviceProviderOptions.classList.add('hiddenServices');
+                    IndividualOptions.classList.remove('hiddenGenders');
+
                 }
             });
+
+            Individual.addEventListener('change', function() {
+                if (Individual.checked) {
+                    IndividualOptions.classList.remove('hiddenGenders');
+                }
+            });
+
+            Business.addEventListener('change', function() {
+                if (Business.checked) {
+                    IndividualOptions.classList.add('hiddenGenders');
+                }
+            });
+
         });
     </script>
 </body>
