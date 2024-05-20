@@ -125,6 +125,7 @@ main {
 .plan-card,
 .chef-card,
 .restau-card {
+  max-width: 400px;
   padding: 1rem;
   border-radius: 5px;
   cursor: pointer;

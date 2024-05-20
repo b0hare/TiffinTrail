@@ -4,23 +4,32 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if ($_POST['captcha_input'] !== $_SESSION['captcha']) {
-        
-        echo "Incorrect Captcha!";
-        exit(); // Stop further execution
+    if (!isset($_POST['SignUp'])) {
+        if ($_POST['captcha_input'] !== $_SESSION['captcha']) {
+
+            echo "Incorrect Captcha!";
+            exit(); // Stop further execution
+        }
     }
 
-    include ('databaseConnect.php'); // connecting to database
+    include('databaseConnect.php'); // connecting to database
 
     if (isset($_POST["role"])) {
         $firstName = filter_input(INPUT_POST, "F_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $lastName = filter_input(INPUT_POST, "L_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = $_POST["email"];
+
+        if ($_POST["password"] !== $_POST["C_password"]) {
+            echo "Passwords do not match.";
+            exit();
+        }
+        
         $M_no = $_POST["mobile_number"];
         $password = password_hash(filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS), PASSWORD_DEFAULT);
         $C_pass = filter_input(INPUT_POST, "C_password", FILTER_SANITIZE_SPECIAL_CHARS);
         $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
         $role = $_POST["role"];
+        $ServiceType = $_POST["ServiceType"];
 
         try {
             $conn = mysqli_connect($server, $user, $pass, $db);
@@ -29,28 +38,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($conn) {
-            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, Role)
-            VALUES  ('$firstName', '$lastName', '$email', '$M_no', '$password', '$role')";
+            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, address, Role, ServiceType)
+            VALUES  ('$firstName', '$lastName', '$email', '$M_no', '$password', '$address', '$role', '$ServiceType')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 // echo "Registration Successfull!";
                 $_SESSION["username"] = $firstName;
+                $_SESSION["mobile_number"] = $M_no;
+
 
                 $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
                 $F_result = mysqli_query($conn, $fetchRole);
 
-                if($F_result){
+                if ($F_result) {
                     $F_row = mysqli_fetch_assoc($F_result);
 
-                    if($F_row['Role'] == "Customer"){
+                    if ($F_row['Role'] == "Customer") {
                         header("Location: user.php");
-                    }
-                    else{
+                    } else {
                         header("Location: chef.php");
                     }
                 }
-                
             } else {
                 echo "Sorry! Failed to register.";
             }
@@ -72,20 +81,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     // echo "Loged in Successfully!";
 
                     $_SESSION["username"] = $row['First_Name'];
+                    $_SESSION["mobile_number"] = $M_no;
+                    
 
                     $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
-                $F_result = mysqli_query($conn, $fetchRole);
+                    $F_result = mysqli_query($conn, $fetchRole);
 
-                if($F_result){
-                    $F_row = mysqli_fetch_assoc($F_result);
+                    if ($F_result) {
+                        $F_row = mysqli_fetch_assoc($F_result);
 
-                    if($F_row['Role'] == "Customer"){
-                        header("Location: user.php");
+                        if ($F_row['Role'] == "Customer") {
+                            header("Location: user.php");
+                        } else {
+                            header("Location: chef.php");
+                        }
                     }
-                    else{
-                        header("Location: chef.php");
-                    }
-                }
                 } else {
                     echo "Incorrect Password!";
                 }
@@ -150,14 +160,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <i class='bx bxs-lock-alt'></i>
                             <input type="text" placeholder="Enter Your Address" name="address" maxlength="20" required>
                         </div>
-                        <div class="input-group radio">
+                        <!-- <div class="input-group radio">
                             <input type="radio" name="role" value="Customer" required>
                             <label>Customer</label>
                             <input type="radio" name="role" value="Service Provider" required>
                             <label>Service Provider</label>
+                        </div> -->
+
+                        <div class="input-group radio">
+                            <input type="radio" name="role" value="Customer" id="customerRadio" required>
+                            <label for="customerRadio">Customer</label>
+                            <input type="radio" name="role" value="Service Provider" id="serviceProviderRadio" required>
+                            <label for="serviceProviderRadio">Service Provider</label>
                         </div>
 
-                        <input class="submit" type="submit" value="Sign up" name="submit">
+                        <div id="serviceProviderOptions" class="hiddenServices">
+                            <h3>How would you serve:</h3>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="ServiceType" value="Individual"> Individual
+                                </label>
+                                <label>
+                                    <input type="radio" name="ServiceType" value="Business"> Business
+                                </label>
+                            </div>
+                        </div>
+
+                        <input class="submit" type="submit" value="Sign up" name="SignUp">
 
                         <p>
                             <span>
@@ -186,10 +215,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <div class="captcha-field input-group">
-                            
+
                             <div class="generate-captcha">
-                            <p id="captcha"></p>
-                            <i class="fa-solid fa-rotate" id="captcha-refresh" style="color: #000;"></i>
+                                <p id="captcha"></p>
+                                <i class="fa-solid fa-rotate" id="captcha-refresh" style="color: #000;"></i>
                             </div>
 
                             <input type="text" name="captcha_input" id="captcha-input" placeholder="Enter Captcha" required>
@@ -265,22 +294,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }, 200)
 
 
-        function captchaGeneration(){
+        function captchaGeneration() {
             setTimeout(() => {
                 captcha = document.getElementById("captcha");
 
-            let fetchSourceData = new XMLHttpRequest();
-            fetchSourceData.open('GET', 'captcha-refresh.php?v=true', true);
-            fetchSourceData.send();
+                let fetchSourceData = new XMLHttpRequest();
+                fetchSourceData.open('GET', 'captcha-refresh.php?v=true', true);
+                fetchSourceData.send();
 
-            fetchSourceData.onreadystatechange = (() =>{
-                if(fetchSourceData.readyState == 4 && fetchSourceData.status == 200){
-                captcha.innerHTML = fetchSourceData.responseText;
-                }
-            })
+                fetchSourceData.onreadystatechange = (() => {
+                    if (fetchSourceData.readyState == 4 && fetchSourceData.status == 200) {
+                        captcha.innerHTML = fetchSourceData.responseText;
+                    }
+                })
             }, 300);
         }
-        let captcha = document.getElementById("captcha-refresh").addEventListener('click', function(){
+        let captcha = document.getElementById("captcha-refresh").addEventListener('click', function() {
             captchaGeneration();
             document.getElementById("captcha-refresh").classList.toggle('refresh-icon');
             setTimeout(() => {
@@ -290,6 +319,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         captchaGeneration();
 
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceProviderRadio = document.getElementById('serviceProviderRadio');
+            const customerRadio = document.getElementById('customerRadio');
+            const serviceProviderOptions = document.getElementById('serviceProviderOptions');
+
+            serviceProviderRadio.addEventListener('change', function() {
+                if (serviceProviderRadio.checked) {
+                    serviceProviderOptions.classList.remove('hiddenServices');
+                }
+            });
+
+            customerRadio.addEventListener('change', function() {
+                if (customerRadio.checked) {
+                    serviceProviderOptions.classList.add('hiddenServices');
+                }
+            });
+        });
     </script>
 </body>
 

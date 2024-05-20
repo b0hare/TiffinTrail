@@ -9,7 +9,11 @@
         {
             $code = $_GET['code'];
 
-            $querry = "SELECT * FROM `plan` WHERE `code` = '$code'";
+            $querry = "SELECT p.*, u.Address 
+            FROM `plan` p
+            JOIN `users` u ON p.user_id = u.Id
+            WHERE p.code = '$code'";
+
             $result = mysqli_query($conn, $querry);
             $row = $result->fetch_assoc();
 
@@ -25,7 +29,7 @@
                         <div class="r-circle"><i class="fa-solid fa-star"></i></div>
                         4.4
                     </div>
-                    <p class="address">ChetakPuri</p>
+                    <p class="address"><?php echo $row['Address'] ?></p>
                     <div class="prices">
                     <p>Weekly: &ThickSpace;<span class="price">₹<?php echo $row['WeeklyPrice'] ?></span></p>
                     <p>Monthly: <span class="price">₹<?php echo $row['MonthlyPrice'] ?></span></p>

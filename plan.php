@@ -1,28 +1,52 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION["username"])) {
+    header("Location: registration.php");
+    exit();
+}
+
 include('databaseConnect.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Fetch the user ID using the session variable
+if (isset($_SESSION["mobile_number"])) {
+    $stmt = $conn->prepare("SELECT `Id` FROM `users` WHERE `Mobile_Number` = ?");
+    $stmt->bind_param("s", $_SESSION["mobile_number"]);
+    $stmt->execute();
+    $stmt->bind_result($userId);
+    $stmt->fetch();
+    $stmt->close();
 
-    $code = 'ABCD47';
-    $p_name = $_POST['p_name'];
-    $p_Wprice = $_POST['p_Wprice'];
-    $p_Mprice = $_POST['p_Mprice'];
-    $p_description = $_POST['p_description'];
-    $p_url = $_POST['planImageURL'];
-    $category = $_POST['category'];
-    $tastePreference = $_POST['tastePreference'];
+    if ($userId) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $p_name = $_POST['p_name'];
+            $p_Wprice = $_POST['p_Wprice'];
+            $p_Mprice = $_POST['p_Mprice'];
+            $p_description = $_POST['p_description'];
+            $p_url = $_POST['planImageURL'];
+            $category = $_POST['category'];
+            $tastePreference = $_POST['tastePreference'];
 
-    $sql = "INSERT INTO `plan`(`code`, `plan_name`, `WeeklyPrice`, `MonthlyPrice`, `p_Description`, `url`, `category`, `Taste_preference`) VALUES ('$code','$p_name','$p_Wprice', '$p_Mprice' ,'$p_description','$p_url','$category','$tastePreference')";
+            $sql = "INSERT INTO `plan`(`user_id`, `plan_name`, `WeeklyPrice`, `MonthlyPrice`, `p_Description`, `url`, `category`, `Taste_preference`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("issddsss", $userId, $p_name, $p_Wprice, $p_Mprice, $p_description, $p_url, $category, $tastePreference);
 
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-        echo "Plan Added Successfully!";
+            if ($stmt->execute()) {
+                echo "Plan Added Successfully!";
+            } else {
+                echo "Failed: " . $conn->error;
+            }
+            $stmt->close();
+        }
     } else {
-        echo "Failed!";
+        echo "User ID not found.";
     }
+} else {
+    echo "No mobile number found in session.";
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -64,17 +88,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="category">Category:</label>
             <select id="category" name="category">
                 <option value="jain">Jain</option>
-                <option value="vegetarian">Vegetarian</option>
-                <option value="non-vegetarian">Non-Vegetarian</option>
+                <option value="veg">Vegetarian</option>
+                <option value="non-veg">Non-Vegetarian</option>
             </select>
 
             <label for="tastePreference">Taste Preference:</label>
             <select id="tastePreference" name="tastePreference">
-                <option value="spicy">Spicy</option>
-                <option value="oily">Oily</option>
-                <option value="not">Not Spicy/Oily</option>
-                <option value="spicy">Spicy/not oily</option>
-                <option value="spicy">Oily/not Spicy</option>
+                <option value="Not Spicy/Oily">Not Spicy/Oily</option>
+                <option value="Spicy">Spicy</option>
+                <option value="Oily">Oily</option>
+                <option value="Spicy/not Oily">Spicy/not oily</option>
+                <option value="Oily/not Spicy">Oily/not Spicy</option>
             </select>
 
 
