@@ -121,6 +121,7 @@ mysqli_close($conn);
 <body>
     <div id="container" class="container align-items-center">
         <div class="form-wrapper align-items-center">
+            <h1>Edit Profile</h1>
             <form action="updateProfile.php" method="post" class="form sign-up">
 
                 <div class="input-group">

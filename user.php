@@ -78,7 +78,8 @@ if ($result) {
                 <div class="dropdown">
                     <i class="fas fa-user">&nbsp; <?php echo $username; ?></i>
                     <div class="dropdown-content">
-                        <a href="updateProfile.php" id="editProfileLink">Edit Profile</a>
+                        <a href="updateProfile.php" id="editProfileLink">Edit</a>
+                        <p id="logOut">LogOut</p>
                     </div>
                 </div>
 
@@ -367,8 +368,19 @@ if ($result) {
             line3.classList.toggle("rotate-up");
 
             line1.classList.toggle("rotate-down");
-
         }
+
+        // logOut function 
+        function logOut() {
+            window.location.href = 'logOut.php';
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const logOutElement = document.getElementById('logOut');
+            if (logOutElement) {
+                logOutElement.addEventListener('click', logOut);
+            }
+        });
     </script>
 
 </body>
