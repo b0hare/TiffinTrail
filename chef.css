@@ -9,7 +9,7 @@
     font-family: "Cabin", sans-serif;
 }
 
-.secondary{
+.secondary {
     color: #FC8019;
     font-weight: 600;
     font-size: 2rem;
@@ -77,7 +77,43 @@ nav .fas {
     transition: all .2s ease-in-out;
 }
 
-.navRight{
+/* Drop down  */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: -70px;
+    background-color: #f9f9f9;
+    width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #c4c4c4
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.profile-form {
+    display: none;
+    /* Hide the form initially */
+}
+
+.navRight {
     position: relative;
     display: flex;
     gap: 10px;
@@ -85,13 +121,13 @@ nav .fas {
     justify-content: center;
 }
 
-.addPlan{
+.addPlan {
     color: #000;
     text-decoration: none;
     transition: all .2s ease-in-out;
 }
 
-.addPlan::after{
+.addPlan::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -102,12 +138,12 @@ nav .fas {
     transition: all .2s ease-in-out;
 }
 
-.addPlan:hover::after{
+.addPlan:hover::after {
     width: 70%;
     left: 0%;
 }
 
-.addPlan:hover{
+.addPlan:hover {
     color: #FC8019;
 }
 
@@ -159,7 +195,7 @@ nav .fas:hover {
 
 /* Orders Section  */
 
-#orders_section{
+#orders_section {
     flex-direction: column;
     align-items: center;
 }
@@ -185,7 +221,7 @@ nav .fas:hover {
 
 /* subscribers section */
 
-#subs_section{
+#subs_section {
     width: 80%;
     margin: 3rem auto;
     display: flex;
@@ -193,10 +229,11 @@ nav .fas:hover {
     align-items: center;
 }
 
-.secondary span{
+.secondary span {
     color: #000;
     font-weight: 600;
 }
+
 .Subscribers {
     height: 45vh;
     overflow-x: auto;
@@ -226,8 +263,11 @@ nav .fas:hover {
 }
 
 .plans {
-    gap: 10px;
+    gap: 30px;
     justify-content: center;
+    flex-wrap: wrap;
+    height: 500px;
+    overflow: auto;
 }
 
 .plan {
@@ -240,14 +280,23 @@ nav .fas:hover {
     min-width: 150px;
     height: 100%;
     max-height: 180px;
+    aspect-ratio: 2 / 1;
 }
 
-.plan-details{
+.plan-details {
     padding: 10px;
 }
 
 .plan-name {
-    font-size: clamp(20px, 3vw, 1.6rem);
+    font-size: clamp(20px, 3vw, 1.4rem);
+}
+
+.plan-price {
+    width: 80px;
+    background-color: #FC8019;
+    color: white;
+    padding: 5px;
+    display: inline-block;
 }
 
 .plans .btn {
@@ -292,7 +341,7 @@ nav .fas:hover {
     flex-wrap: wrap;
 }
 
-.social-icon__item{
+.social-icon__item {
     list-style: none;
 }
 
@@ -378,20 +427,20 @@ nav .fas:hover {
 
 /* media query screen < 700px  */
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
 
-    #ordersNsubs{
+    #ordersNsubs {
         display: block !important;
     }
 
-    .plans{
+    .plans {
         height: 70vh;
         flex-wrap: wrap;
         overflow-x: auto;
         gap: 1.5rem;
     }
 
-    .plan{
+    .plan {
         /* max-width: calc(100% - 50px); */
         margin-bottom: 20px;
     }

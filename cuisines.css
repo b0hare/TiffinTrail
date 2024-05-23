@@ -93,7 +93,7 @@ main {
   background-color: #fff;
   color: #3A7F00;
   border: 2px solid #3A7F00;
-  margin: 3rem 4rem;
+  margin: 3rem 4.5rem;
   font-weight: 600;
   font-size: 1.1rem;
   cursor: pointer;
@@ -147,14 +147,12 @@ main {
 }
 
 .price {
-  position: absolute;
   background-color: #FC8019;
   color: white;
   padding: 5px;
-  top: 20px;
-  right: 10px;
   font-size: .85rem;
   font-weight: 550;
+  width: fit-content;
 }
 
 img {
@@ -367,6 +365,6 @@ footer p {
   }
 
   #full-plan .plan-card {
-    width: auto;
+    min-width: 280px;
   }
 }

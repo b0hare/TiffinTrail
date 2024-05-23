@@ -2,12 +2,26 @@
 
 session_start();
 
+include "databaseConnect.php";
+
 if (!isset($_SESSION["username"])) {
     header("Location: registration.php");
     exit();
 }
 
 $username = $_SESSION["username"];
+$M_No = $_SESSION["mobile_number"];
+
+$query = "SELECT `First_Name`, `Last_Name`, `Email`, `Mobile_Number`, `Password`, `Address`, `ProfileImg`, `Gender`, `Role` FROM `users` WHERE `Mobile_Number` = '$M_No'";
+$result = mysqli_query($conn, $query);
+
+if ($result) {
+    $user = mysqli_fetch_assoc($result);
+} else {
+    header("Location: registration.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +73,14 @@ $username = $_SESSION["username"];
                     <div id="line3"></div>
                 </div>
 
+                <!-- Drop Down -->
+
+                <div class="dropdown">
                     <i class="fas fa-user">&nbsp; <?php echo $username; ?></i>
+                    <div class="dropdown-content">
+                        <a href="updateProfile.php" id="editProfileLink">Edit Profile</a>
+                    </div>
+                </div>
 
             </div>
 
@@ -337,7 +358,7 @@ $username = $_SESSION["username"];
         let line2 = document.getElementById("line2");
         let line3 = document.getElementById("line3");
 
-        function menu_bar () {
+        function menu_bar() {
 
             document.getElementById("bar").classList.toggle("opacity8");
 
@@ -346,9 +367,8 @@ $username = $_SESSION["username"];
             line3.classList.toggle("rotate-up");
 
             line1.classList.toggle("rotate-down");
-            
-        }
 
+        }
     </script>
 
 </body>

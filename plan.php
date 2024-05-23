@@ -30,10 +30,12 @@ if (isset($_SESSION["mobile_number"])) {
 
             $sql = "INSERT INTO `plan`(`user_id`, `plan_name`, `WeeklyPrice`, `MonthlyPrice`, `p_Description`, `url`, `category`, `Taste_preference`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("issddsss", $userId, $p_name, $p_Wprice, $p_Mprice, $p_description, $p_url, $category, $tastePreference);
+            $stmt->bind_param("isddssss", $userId, $p_name, $p_Wprice, $p_Mprice, $p_description, $p_url, $category, $tastePreference);
 
             if ($stmt->execute()) {
                 echo "Plan Added Successfully!";
+                header("Location: plan.php");
+                exit();
             } else {
                 echo "Failed: " . $conn->error;
             }

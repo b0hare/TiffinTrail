@@ -30,25 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
         $role = $_POST["role"];
         $ServiceType = $_POST["ServiceType"];
-        $gender = $_POST['gender'];
+        $gender = $_POST['Gender'];
 
-        if ($gender == 'male') {
-            $profileImg = 'path/to/default_male_image.jpg';
-        } else if ($gender == 'female') {
-            $profileImg = 'path/to/default_female_image.jpg';
-        } else {
-            $profileImg = 'path/to/default_image.jpg'; 
-        }
-
-        try {
-            $conn = mysqli_connect($server, $user, $pass, $db);
-        } catch (mysqli_sql_exception) {
-            echo "Could not connect.";
-        }
+        if ($gender == 'Male') {
+            $profileImg = 'https://img.freepik.com/premium-vector/curry-dishes_78118-131.jpg';
+        } else if ($gender == 'Female') {
+            $profileImg = 'https://st2.depositphotos.com/8322640/48266/v/450/depositphotos_482669160-stock-illustration-lady-chef-holding-frypan-hand.jpg';
+        } 
 
         if ($conn) {
-            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, address,ProfileImg, Role, ServiceType)
-            VALUES  ('$firstName', '$lastName', '$email', '$M_no', '$password', '$address','$profileImg' ,'$role', '$ServiceType')";
+            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, address,ProfileImg, Role, ServiceType, Gender)
+            VALUES  ('$firstName', '$lastName', '$email', '$M_no', '$password', '$address','$profileImg' ,'$role', '$ServiceType', '$gender')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
@@ -202,13 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <label>
                                     <input type="radio" name="Gender" value="Female"> Female
                                 </label>
-                                <label>
-                                    <input type="radio" name="Gender" value="Other"> Other
-                                </label>
                             </div>
                         </div>
-
-
 
                         <input class="submit" type="submit" value="Sign up" name="SignUp">
 
