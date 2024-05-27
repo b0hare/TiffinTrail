@@ -29,7 +29,7 @@ p {
 
 @keyframes changeBg {
     0% {
-        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_0.jpg) no-repeat center/cover;
+        background: url(./images/Tiffin_box0.jpg) no-repeat center/cover;
     }
 
     25% {
@@ -37,12 +37,12 @@ p {
     }
 
     50% {
-        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_1.jpg) no-repeat center/cover;
+        background: url(./images/Tiffin_box1.jpg) no-repeat center/cover;
 
     }
 
     75% {
-        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_3.jpg) no-repeat center/cover;
+        background: url(./images/Tiffin_box3.jpg) no-repeat center/cover;
 
     }
 
@@ -416,6 +416,10 @@ hr {
     font-weight: 550;
 }
 
+.services .tertiary {
+    align-self: self-start;
+}
+
 #second .cuisines img,
 .services img {
     width: 100%;
@@ -628,6 +632,7 @@ hr {
     #second p,
     #third p {
         width: 90% !important;
+        text-align: center;
     }
 
     .cuisines,

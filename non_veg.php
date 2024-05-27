@@ -8,7 +8,6 @@ if (!isset($_SESSION["chefname"])) {
     $username = $_SESSION["mobile_number"];
     $M_no = $_SESSION["mobile_number"];
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +16,7 @@ if (!isset($_SESSION["chefname"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veg Food</title>
+    <title>Non-Veg Food</title>
 
     <link rel="stylesheet" href="cuisines.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -30,7 +29,7 @@ if (!isset($_SESSION["chefname"])) {
         <nav>
             <div class="nav-left">
                 <img src="images/TT_Logo.png" alt="TTLogo">
-                <span>Veg</span>
+                <span>Non-Veg</span>
             </div>
 
             <div class="nav-right">
@@ -65,8 +64,8 @@ if (!isset($_SESSION["chefname"])) {
                 $query = "SELECT p.*, u.Address 
                 FROM `plan` p
                 JOIN `users` u ON p.user_id = u.Id
-                WHERE p.category = 'veg' AND u.ServiceType = 'Individual'";
-
+                WHERE p.category = 'non-veg' AND u.ServiceType = 'Individual'";
+      
                 $result = $conn->query($query);
 
                 while ($row = $result->fetch_assoc()) {
@@ -99,12 +98,10 @@ if (!isset($_SESSION["chefname"])) {
 
                 <?php
 
-                // $query = "SELECT `First_Name`, `Address`, `ProfileImg` FROM `users` WHERE ServiceType = 'Individual'";
-
-                $query = "SELECT DISTINCT u.Id, u.First_Name,u.Mobile_Number, u.Address, u.ProfileImg
+                $query = "SELECT DISTINCT u.Id, u.First_Name,Last_Name,u.Mobile_Number, u.Address, u.ProfileImg
                 FROM `plan` p
                 JOIN `users` u ON p.user_id = u.Id
-                WHERE p.category = 'veg' AND u.ServiceType = 'Individual'";
+                WHERE p.category = 'non-veg' AND u.ServiceType = 'Individual'";
 
                 $result = $conn->query($query);
 
@@ -134,12 +131,12 @@ if (!isset($_SESSION["chefname"])) {
             <h2>Restaurant Meal plans</h2>
             <div class="restau-grid">
 
-                <?php
+            <?php
                 $query = "SELECT p.*, u.Address 
                 FROM `plan` p
                 JOIN `users` u ON p.user_id = u.Id
-                WHERE p.category = 'veg' AND u.ServiceType = 'Business'";
-
+                WHERE p.category = 'non-veg' AND u.ServiceType = 'Business'";
+      
                 $result = $conn->query($query);
 
                 while ($row = $result->fetch_assoc()) {
@@ -168,12 +165,12 @@ if (!isset($_SESSION["chefname"])) {
             <h2>Restaurants</h2>
             <div class="restau-grid">
 
-                <?php
+            <?php
 
                 $query = "SELECT DISTINCT u.Id, u.First_Name,Last_Name,u.Mobile_Number, u.Address, u.ProfileImg
                 FROM `plan` p
                 JOIN `users` u ON p.user_id = u.Id
-                WHERE p.category = 'veg' AND u.ServiceType = 'Business'";
+                WHERE p.category = 'non-veg' AND u.ServiceType = 'Business'";
 
                 $result = $conn->query($query);
 
@@ -183,7 +180,7 @@ if (!isset($_SESSION["chefname"])) {
                         <img src="<?php echo $row['ProfileImg'] ?>" alt="chef-img">
 
                         <div class="chef-details">
-                            <p class="chef-name"><?php echo $row['First_Name'] ?> <?php echo $row['Last_Name'] ?></p>
+                            <p class="chef-name"><?php echo $row['First_Name']?> <?php echo $row['Last_Name']?></p>
                             <div class="rating">
                                 <div class="r-circle"><i class="fa-solid fa-star"></i></div>
                                 4.4
@@ -202,7 +199,7 @@ if (!isset($_SESSION["chefname"])) {
     </main>
 
     <footer>
-        <p>Experience the joy of authentic veg cooking delivered straight to your door.</p>
+        <p>Experience the joy of authentic non-veg cooking delivered straight to your door.</p>
         <p class="copyright">&copy; Tiffin Trail. All Rights Reserved.</p>
     </footer>
 

@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $profileImg = 'https://img.freepik.com/premium-vector/curry-dishes_78118-131.jpg';
         } else if ($gender == 'Female') {
             $profileImg = 'https://st2.depositphotos.com/8322640/48266/v/450/depositphotos_482669160-stock-illustration-lady-chef-holding-frypan-hand.jpg';
-        } 
+        }
 
         if ($conn) {
             $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, address,ProfileImg, Role, ServiceType, Gender)
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $M_no = $_POST["mobile_number"];
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-        $sql = "SELECT First_Name, Password FROM users WHERE Mobile_Number = '$M_no'";
+        $sql = "SELECT First_Name, Password, Role FROM users WHERE Mobile_Number = '$M_no'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -81,8 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (password_verify($password, $hashed_pass)) {
                     // echo "Loged in Successfully!";
 
-                    $_SESSION["username"] = $row['First_Name'];
-                    $_SESSION["mobile_number"] = $M_no;
+
 
 
                     $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
@@ -92,8 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $F_row = mysqli_fetch_assoc($F_result);
 
                         if ($F_row['Role'] == "Customer") {
+                            $_SESSION["username"] = $row['First_Name'];
+                            $_SESSION["mobile_number"] = $M_no;
                             header("Location: user.php");
                         } else {
+                            $_SESSION["chefname"] = $row['First_Name'];
+                            $_SESSION["mobile_number"] = $M_no;
                             header("Location: chef.php");
                         }
                     }

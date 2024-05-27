@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION["username"])) {
+if (!isset($_SESSION["chefname"])) {
     header("Location: registration.php");
     exit();
 }
@@ -43,9 +43,10 @@ if (!isset($_SESSION["username"])) {
                     <!-- Drop Down -->
 
                     <div class="dropdown">
-                        <i class="fas fa-user"></i> 
+                        <i class="fas fa-user"></i>
                         <div class="dropdown-content">
                             <a href="updateProfile.php" id="editProfileLink">Edit Profile</a>
+                            <p id="logOut">LogOut</p>
                         </div>
                     </div>
                 </div>
@@ -238,7 +239,6 @@ if (!isset($_SESSION["username"])) {
 
 
     <script>
-
         function animate_tagLine() {
             let tagP = document.getElementById("tag_line");
             let tagLine = "A path to Homemade and Restaurant Quality Meals";
@@ -256,6 +256,19 @@ if (!isset($_SESSION["username"])) {
         }
 
         window.onload = animate_tagLine();
+
+
+        // logOut function 
+        function logOut() {
+            window.location.href = 'logOut.php';
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const logOutElement = document.getElementById('logOut');
+            if (logOutElement) {
+                logOutElement.addEventListener('click', logOut);
+            }
+        });
     </script>
 
 
