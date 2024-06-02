@@ -3,8 +3,15 @@
 session_start();
 include "databaseConnect.php";
 
-$username = $_SESSION["username"];
+if (isset($_SESSION["chefname"])) {
+    $chefname = $_SESSION["chefname"];
+} else {
+    $username = $_SESSION["username"];
+}
+
 $M_No = $_SESSION["mobile_number"];
+
+
 
 $query = "SELECT `First_Name`, `Last_Name`, `Email`, `Mobile_Number`, `Password`, `Address`, `ProfileImg`, `Gender`, `Role` FROM `users` WHERE `Mobile_Number` = '$M_No'";
 $result = mysqli_query($conn, $query);
@@ -44,8 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        $_SESSION["username"] = $firstName;
-        $_SESSION["mobile_number"] = $M_no;
+        if ($role == "Customer") {
+            $_SESSION["username"] = $firstName;
+            $_SESSION["mobile_number"] = $mobileNumber;
+        } else {
+            $_SESSION["chefname"] = $firstName;
+            $_SESSION["mobile_number"] = $mobileNumber;
+        }
 
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 

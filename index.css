@@ -75,6 +75,7 @@ nav {
 nav div {
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 nav .left {
@@ -82,8 +83,7 @@ nav .left {
 }
 
 nav #logo {
-    width: 70px;
-    height: 70px;
+    width: 60px;
 }
 
 nav div .tertiary {
@@ -189,7 +189,7 @@ nav .right {
 .rotate-down {
     transform: rotate(45deg);
     top: 6px;
-    left: 5px;
+    left: 4px;
 }
 
 .rotate-up {

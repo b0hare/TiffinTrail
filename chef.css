@@ -31,7 +31,7 @@ p {
 
 @keyframes changeBg {
     0% {
-        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_0.jpg) no-repeat center/cover;
+        background: url(./images/Tiffin_box0.jpg) no-repeat center/cover;
     }
 
     25% {
@@ -39,12 +39,12 @@ p {
     }
 
     50% {
-        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_1.jpg) no-repeat center/cover;
+        background: url(./images/Tiffin_box1.jpg) no-repeat center/cover;
 
     }
 
     75% {
-        background: url(./images/Default_Generate_image_of_vertical_Tiffin_box_with_the_backgro_3.jpg) no-repeat center/cover;
+        background: url(./images/Tiffin_box3.jpg) no-repeat center/cover;
 
     }
 
@@ -270,7 +270,7 @@ nav .fas:hover {
     gap: 30px;
     justify-content: center;
     flex-wrap: wrap;
-    height: 500px;
+    height: 50vh;
     overflow: auto;
 }
 

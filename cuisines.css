@@ -109,7 +109,8 @@ main {
 
 .plan-grid,
 .chef-grid,
-.restau-grid {
+.restau-grid,
+.result-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

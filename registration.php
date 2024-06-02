@@ -44,10 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
-                // echo "Registration Successfull!";
-                $_SESSION["username"] = $firstName;
-                $_SESSION["mobile_number"] = $M_no;
-
 
                 $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
                 $F_result = mysqli_query($conn, $fetchRole);
@@ -56,8 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $F_row = mysqli_fetch_assoc($F_result);
 
                     if ($F_row['Role'] == "Customer") {
+                        $_SESSION["username"] = $row['First_Name'];
+                        $_SESSION["mobile_number"] = $M_no;
                         header("Location: user.php");
                     } else {
+                        $_SESSION["chefname"] = $row['First_Name'];
+                        $_SESSION["chefMobile"] = $M_no;
                         header("Location: chef.php");
                     }
                 }
@@ -81,9 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (password_verify($password, $hashed_pass)) {
                     // echo "Loged in Successfully!";
 
-
-
-
                     $fetchRole = "SELECT `Role` FROM `users` WHERE Mobile_Number = '$M_no'";
                     $F_result = mysqli_query($conn, $fetchRole);
 
@@ -96,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             header("Location: user.php");
                         } else {
                             $_SESSION["chefname"] = $row['First_Name'];
-                            $_SESSION["mobile_number"] = $M_no;
+                            $_SESSION["chefMobile"] = $M_no;
                             header("Location: chef.php");
                         }
                     }

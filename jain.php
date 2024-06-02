@@ -4,10 +4,18 @@ include("databaseConnect.php");
 
 session_start();
 
-if (!isset($_SESSION["chefname"])) {
-    $username = $_SESSION["mobile_number"];
-    $M_no = $_SESSION["mobile_number"];
+if (isset($_SESSION["mobile_number"])) {
+    if (!isset($_SESSION["chefname"])) {
+        $username = $_SESSION["username"];
+        $M_no = $_SESSION["mobile_number"];
+    }
 }
+
+$search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
+
+// Sanitize the input to prevent SQL injection
+$search_query = $conn->real_escape_string($search_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +43,10 @@ if (!isset($_SESSION["chefname"])) {
             <div class="nav-right">
 
                 <div class="search">
-                    <input type="search" name="" placeholder="Search food">
-                    <button type="submit">Search</button>
+                    <form action="jain.php" method="get">
+                        <input type="search" name="search_query" placeholder="Search food">
+                        <button type="submit">Search</button>
+                    </form>
                     <a href=""><i class="fa-solid fa-magnifying-glass" style="color: #3A7F00;"></i></a>
                 </div>
 
@@ -46,6 +56,51 @@ if (!isset($_SESSION["chefname"])) {
 
     <main>
 
+        <!-- Search results section -->
+        <section class="search-results" style="display: <?php echo $search_query ? 'block' : 'none'; ?>;">
+            <h2>Search Results</h2>
+            <div class="result-grid">
+
+                <?php
+                if ($search_query) {
+                    $query = "SELECT p.*, u.Address 
+                          FROM `plan` p
+                          JOIN `users` u ON p.user_id = u.Id
+                          WHERE p.category = 'jain' 
+                          AND u.ServiceType IN ('Individual', 'Business')
+                          AND (p.plan_name LIKE '%$search_query%' 
+                          OR p.p_Description LIKE '%$search_query%' 
+                          OR u.First_Name LIKE '%$search_query%' 
+                          OR u.Last_Name LIKE '%$search_query%' 
+                          OR u.Address LIKE '%$search_query%')";
+
+                    $result = $conn->query($query);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                ?>
+                            <div class="plan-card" onclick="fetchPlan('<?php echo $row['code'] ?>')">
+                                <img src="<?php echo $row['url'] ?>" alt="Veg plan 1">
+                                <div class="plan-details">
+                                    <p class="plan-name"><?php echo $row['plan_name'] ?></p>
+                                    <div class="rating">
+                                        <div class="r-circle"><i class="fa-solid fa-star"></i></div>
+                                        4.4
+                                    </div>
+                                    <p class="address"><?php echo $row['Address'] ?></p>
+                                    <p class="price">₹<?php echo $row['MonthlyPrice'] ?></p>
+                                </div>
+                            </div>
+                <?php
+                        }
+                    } else {
+                        echo "<p>No results found for '$search_query'</p>";
+                    }
+                }
+                ?>
+
+            </div>
+        </section>
 
         <!-- Full plan  -->
 
@@ -222,6 +277,10 @@ if (!isset($_SESSION["chefname"])) {
                     document.querySelector("main").style.visibility = "hidden";
 
                     document.querySelector("footer").style.display = "none";
+
+                    document.querySelector(".search-results").style.display = "none";
+
+                    document.querySelector("body").style.height = "100vh";
                 }
 
                 let iconElement = document.createElement("i");
@@ -235,9 +294,13 @@ if (!isset($_SESSION["chefname"])) {
                 xMark.onclick = () => {
                     full_plan.style.display = "none";
 
+                    document.querySelector("body").style.height = "auto";
+
                     document.querySelector("main").style.visibility = "visible";
 
                     document.querySelector("footer").style.display = "block";
+
+                    document.querySelector("search-results").style.display = "block";
 
                 }
             })

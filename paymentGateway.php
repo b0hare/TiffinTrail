@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- https://razorpay.com/docs/build/browser/assets/images/payment-methods-customize-sample-code-land-on-card.jpg -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TiffinTrailPayment</title>
 
     <style>
-
-        body{
+        body {
             height: 100vh;
             margin: 0;
             padding: 0;
@@ -28,7 +29,7 @@
             position: relative;
         }
 
-        .payment-gateway img {
+        .p_img {
             position: absolute;
             top: 10px;
             right: 30px;
@@ -120,11 +121,11 @@
         // Fetch the plan details
         $planDetail = $result->fetch_assoc();
         ?>
-        <h2>Payment Gateway</h2>
-        <form id="payment-form" method="post">
+        <h2>Proceed to Pay</h2>
+        <form id="payment-form" action="razorpay.php" method="GET">
             <div class="form-group">
                 <label for="plan-name">Plan Name</label>
-                <input type="text" id="plan-name" name="plan-name"  value="<?php echo htmlspecialchars($planDetail['plan_name']); ?>" readonly required>
+                <input type="text" id="plan-name" name="plan-name" value="<?php echo htmlspecialchars($planDetail['plan_name']); ?>" readonly required>
             </div>
             <div class="form-group">
                 <label for="plan-by">Plan By</label>
@@ -142,9 +143,11 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" rows="4" readonly required><?php echo htmlspecialchars($planDetail['p_Description']); ?></textarea>
             </div>
-            <button type="submit" class="confirm-button">Confirm Payment</button>
+
+            <img class="p_img" src="<?php echo htmlspecialchars($planDetail['url']); ?>" alt="Plan Image">
+                
+            <button type="submit" class="confirm-button" value="payment" >Proceed</button>
         </form>
-        <img src="<?php echo htmlspecialchars($planDetail['url']); ?>" alt="Plan Image">
         <?php
 
         // Close the statement and connection
@@ -153,7 +156,6 @@
     </div>
 
     <script>
-
         function confirmed() {
             console.log("PaymentConfirm");
         }

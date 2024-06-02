@@ -1,10 +1,36 @@
 <?php
 
+include 'databaseConnect.php';
 session_start();
 
 if (!isset($_SESSION["chefname"])) {
     header("Location: registration.php");
     exit();
+} else {
+    $chefname = $_SESSION["chefname"];
+    $M_no = $_SESSION["chefMobile"];
+}
+
+// Fetch subscriber details
+$subscribersQuery = "SELECT s.userID, s.userName, s.userAddress FROM subscribers s";
+$subscribersResult = mysqli_query($conn, $subscribersQuery);
+
+// Store subscriber details
+$subscribersData = [];
+while ($row = mysqli_fetch_assoc($subscribersResult)) {
+    $subscribersData[] = $row;
+}
+
+// Fetch user profile images based on userID
+$profileImages = [];
+foreach ($subscribersData as $subscriber) {
+    $userID = $subscriber['userID'];
+    $usersQuery = "SELECT ProfileImg FROM users WHERE Id = '$userID'";
+    $usersResult = mysqli_query($conn, $usersQuery);
+    $userData = mysqli_fetch_assoc($usersResult);
+    if ($userData) {
+        $profileImages[$userID] = $userData['ProfileImg'];
+    }
 }
 
 ?>
@@ -34,7 +60,7 @@ if (!isset($_SESSION["chefname"])) {
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="images/TT_Logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
+                    <img src="https://lh3.googleusercontent.com/RgVqHSvDkg5Gw0_UaeklzrX2_eARmBpRxduqyw2uk54sSe9ErDJL-v6oIyefoxxRMnMhe1YZaoeJtDN9odZ1uo2miPtU=w1200-rw" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
                     Tiffin Trail
                 </a>
 
@@ -128,25 +154,24 @@ if (!isset($_SESSION["chefname"])) {
 
         <div class="Subscribers d-flex my-5">
 
-            <div class="subscriber mb-3">
-                <img src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais" alt="subs-1">
+        <?php
+            foreach ($subscribersData as $subscriber) {
+                $userID = $subscriber['userID'];
+                $userName = $subscriber['userName'];
+                $userAddress = $subscriber['userAddress'];
+                $profileImg = isset($profileImages[$userID]) ? $profileImages[$userID] : 'default.jpg'; // Default image if not found
+            ?>
+                <div class="subscriber mb-3">
+                    <img src="<?php echo $profileImg; ?>" alt="subscriber-img">
 
-                <div class="subs-detail">
-                    <h3 class="subs-name tertiary ps-4">Raj</h3>
-                    <h4 class="quaternary subs-name lead ps-4">Aamkho</h4>
+                    <div class="subs-detail">
+                        <h3 class="subs-name tertiary ps-4"><?php echo $userName; ?></h3>
+                        <h4 class="quaternary subs-name lead ps-4"><?php echo $userAddress; ?></h4>
+                    </div>
                 </div>
-
-            </div>
-
-            <div class="subscriber mb-3">
-                <img src="https://img.freepik.com/premium-photo/3d-animation-character-cartoon_113255-10852.jpg?w=740" alt="subs-1">
-
-                <div class="subs-detail">
-                    <h3 class="subs-name tertiary ps-4">Pallavi</h3>
-                    <h4 class="quaternary subs-name lead ps-4">Chetakpuri</h4>
-                </div>
-
-            </div>
+            <?php
+            }
+            ?>
 
             <div class="subscriber mb-3">
                 <img src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais" alt="subs-1">
@@ -182,7 +207,10 @@ if (!isset($_SESSION["chefname"])) {
 
             <?php
             include("databaseConnect.php");
-            $query = "SELECT * FROM `plan`";
+            $query = " SELECT p.*
+            FROM `plan` p
+            JOIN `users` u ON p.`user_id` = u.`Id`
+            WHERE u.`Mobile_Number` = '$M_no'";
             $result = $conn->query($query);
 
             while ($row = $result->fetch_assoc()) {

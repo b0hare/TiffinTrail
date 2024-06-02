@@ -55,7 +55,7 @@ if ($result) {
                     </h3>
                 </div>
 
-                <ul>
+                <ul id="options" style="right: 145px;">
                     <li><a href="" class="active">Home</a></li>
                     <li><a href="#second">Cuisines</a></li>
                     <li><a href="#third">Services</a></li>
@@ -64,8 +64,8 @@ if ($result) {
             </div>
 
             <div class="right">
-                <input type="search" name="" placeholder="Search food">
-                <button type="submit">Search</button>
+                <!-- <input type="search" name="" placeholder="Search food">
+                <button type="submit">Search</button> -->
 
                 <div id="bar" onclick="menu_bar()" class="opacity8">
                     <div id="line1"></div>
@@ -112,8 +112,7 @@ if ($result) {
             <div class="dish_desc">
 
                 <h3 class="tertiary">Veg</h3>
-                <p class="cuisine_des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolorem dolorum
-                    adipisci veniam sequi!</p>
+                <p class="cuisine_des">Explore fresh and flavorful vegetarian dishes, perfect for herbivores seeking delicious and wholesome meal options.</p>
                 <a class="a_link" href="veg.php">Explore</a></p>
 
             </div>
@@ -129,8 +128,7 @@ if ($result) {
             <div class="dish_desc">
 
                 <h3 class="tertiary">Jain</h3>
-                <p class="cuisine_des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolorem dolorum
-                    adipisci veniam sequi!</p>
+                <p class="cuisine_des">Enjoy pure and delectable Jain-friendly cuisine, crafted with care to meet dietary restrictions and satisfy discerning tastes.</p>
                 <a class="a_link" href="jain.php">Explore</a>
 
             </div>
@@ -146,8 +144,7 @@ if ($result) {
             <div class="dish_desc">
 
                 <h3 class="tertiary">Non-veg</h3>
-                <p class="cuisine_des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolorem dolorum
-                    adipisci veniam sequi!</p>
+                <p class="cuisine_des">Indulge in succulent meats and tantalizing flavors, curated for carnivores seeking an elevated dining experience and culinary adventure.</p>
                 <a class="a_link" href="non_veg.php">Explore</a>
 
 
@@ -173,8 +170,7 @@ if ($result) {
 
             <div class="service_desc">
                 <h3 class="tertiary">Home-cooked Meal Delivery</h3>
-                <p class="cuisine_des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolorem dolorum
-                    adipisci veniam sequi!</p>
+                <p class="cuisine_des">Experience the warmth of home-cooked meals delivered straight to your door, made with love and care.</p>
                 <a class="a_link" href="#">Explore</a>
             </div>
 
@@ -188,8 +184,7 @@ if ($result) {
 
             <div class="service_desc">
                 <h3 class="tertiary">Restaurant Meal Delivery</h3>
-                <p class="cuisine_des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolorem dolorum
-                    adipisci veniam sequi!</p>
+                <p class="cuisine_des">Savor restaurant-quality dishes in the comfort of your home with our reliable meal delivery service.</p>
                 <a class="a_link" href="#">Explore</a>
             </div>
 
@@ -204,8 +199,7 @@ if ($result) {
 
             <div class="service_desc">
                 <h3 class="tertiary">Meal Subscriptions</h3>
-                <p class="cuisine_des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolorem dolorum
-                    adipisci veniam sequi!</p>
+                <p class="cuisine_des">Enjoy hassle-free, nutritious meals daily with our convenient meal subscription plans tailored for you.</p>
                 <a class="a_link" href="#">Explore</a>
             </div>
 
@@ -215,7 +209,7 @@ if ($result) {
 
         </div>
 
-        <div class="services">
+        <div class="services" style="display: none;">
 
             <div class="service_desc">
                 <h3 class="tertiary">Custom Meal Plans</h3>
@@ -368,6 +362,9 @@ if ($result) {
             line3.classList.toggle("rotate-up");
 
             line1.classList.toggle("rotate-down");
+
+            document.getElementById("options").classList.toggle("display_b");
+
         }
 
         // logOut function 
