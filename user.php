@@ -78,7 +78,10 @@ if ($result) {
                 <div class="dropdown">
                     <i class="fas fa-user">&nbsp; <?php echo $username; ?></i>
                     <div class="dropdown-content">
-                        <a href="updateProfile.php" id="editProfileLink">Edit</a>
+                        <form action="updateProfile.php" method="post">
+                            <input style="display: none;" type="text" name="mobileNumber" value="<?php echo $M_No ; ?>" >
+                            <input type="submit" value="Edit" name="Edit" id="editProfileLink">
+                        </form>
                         <p id="logOut">LogOut</p>
                     </div>
                 </div>

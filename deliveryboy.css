@@ -25,6 +25,12 @@ nav {
     right: 10px;
 }
 
+.display-b{
+    display: block !important;
+}
+
+
+
 .personal-info .list-group-item {
     border: none;
     padding: 10px 15px;

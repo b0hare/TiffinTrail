@@ -9,9 +9,12 @@ if (isset($_SESSION["chefname"])) {
     $username = $_SESSION["username"];
 }
 
-$M_No = $_SESSION["mobile_number"];
-
-
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['mobileNumber'])) {
+    $M_No = $_POST['mobileNumber'];
+} else {
+    echo "Mobile number not provided.";
+    exit();
+}
 
 $query = "SELECT `First_Name`, `Last_Name`, `Email`, `Mobile_Number`, `Password`, `Address`, `ProfileImg`, `Gender`, `Role` FROM `users` WHERE `Mobile_Number` = '$M_No'";
 $result = mysqli_query($conn, $query);

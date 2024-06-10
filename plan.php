@@ -10,9 +10,9 @@ if (!isset($_SESSION["chefname"])) {
 include('databaseConnect.php');
 
 // Fetch the user ID using the session variable
-if (isset($_SESSION["mobile_number"])) {
+if (isset($_SESSION["chefMobile"])) {
     $stmt = $conn->prepare("SELECT `Id` FROM `users` WHERE `Mobile_Number` = ?");
-    $stmt->bind_param("s", $_SESSION["mobile_number"]);
+    $stmt->bind_param("s", $_SESSION["chefMobile"]);
     $stmt->execute();
     $stmt->bind_result($userId);
     $stmt->fetch();

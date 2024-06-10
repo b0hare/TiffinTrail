@@ -32,11 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $ServiceType = $_POST["ServiceType"];
         $gender = $_POST['Gender'];
 
-        if ($gender == 'Male') {
-            $profileImg = 'https://img.freepik.com/premium-vector/curry-dishes_78118-131.jpg';
-        } else if ($gender == 'Female') {
-            $profileImg = 'https://st2.depositphotos.com/8322640/48266/v/450/depositphotos_482669160-stock-illustration-lady-chef-holding-frypan-hand.jpg';
+        // Setting default profile image URLs based on role and gender
+        if ($role == 'Service Provider') {
+            $profileImg = ($gender == 'Male') ?
+                'https://img.freepik.com/premium-vector/curry-dishes_78118-131.jpg' :
+                'https://st2.depositphotos.com/8322640/48266/v/450/depositphotos_482669160-stock-illustration-lady-chef-holding-frypan-hand.jpg';
+        } else {
+            $profileImg = ($gender == 'Male') ?
+                'https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?size=626&ext=jpg&ga=GA1.1.379443224.1710346056&semt=ais' :
+                'https://img.freepik.com/premium-photo/3d-animation-character-cartoon_113255-10852.jpg?w=740';
         }
+
 
         if ($conn) {
             $sql = "INSERT INTO users(First_Name, Last_Name, Email, Mobile_Number, Password, address,ProfileImg, Role, ServiceType, Gender)
@@ -239,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <p>
                             <b>
-                                Forgot password?
+                                <a style="text-decoration: none; color: #000;" href="deliveryBoyRegister.php">Login as Delivery Boy</a>
                             </b>
                         </p>
                         <p>
