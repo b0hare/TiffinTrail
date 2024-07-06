@@ -91,14 +91,14 @@ foreach ($subscribersData as $subscriber) {
                 $planCode = $subscriber['planCode'];
 
                 // Fetch plan name based on planCode
-                $planQuery = "SELECT plan_name FROM plan WHERE code = '$planCode'";
+                $planQuery = "SELECT plan_name, `url` FROM plan WHERE code = '$planCode'";
                 $planResult = mysqli_query($conn, $planQuery);
                 $plan = mysqli_fetch_assoc($planResult);
 
                 // Generate the HTML for each order
             ?>
                 <div class="order d-flex px-3 align-items-center mb-3">
-                    <img src="https://www.healthifyme.com/blog/wp-content/uploads/2021/10/1500-Calorie-Vegetarian-Diet-Plan.jpg" alt="plan_image" width="35%">
+                    <img src="<?php echo htmlspecialchars($plan['url']); ?>" alt="plan_image" width="35%">
                     <div class="order_desc">
                         <h3 class="plan-name tertiary"><?php echo htmlspecialchars($plan['plan_name']); ?></h3>
                         <h4 class="quaternary subs-name lead"><?php echo htmlspecialchars($subscriber['userName']) . ', ' . htmlspecialchars($subscriber['userAddress']); ?></h4>

@@ -2,6 +2,10 @@
 include "databaseConnect.php";
 session_start();
 
+if (!isset($_SESSION["user"])) {
+    header("Location: registration.php");
+    exit();
+}
 // Assuming the user is logged in and their mobile number is stored in the session
 $mobileNumber = $_SESSION['user'];
 
@@ -41,7 +45,7 @@ $stmt->close();
 
                 <div class="personal-info">
                     <div class="card-body">
-                    <ul class="list-group">
+                        <ul class="list-group">
                             <li class="list-group-item">
                                 <i class="fas fa-id-badge"></i> Name: <strong><?php echo htmlspecialchars($name); ?></strong>
                             </li>
@@ -56,6 +60,9 @@ $stmt->close();
                             </li>
                             <li class="list-group-item">
                                 <i class="fas fa-map-marker-alt"></i> Address: <strong><?php echo htmlspecialchars($address); ?></strong>
+                            </li>
+                            <li class="list-group-item">
+                                <p id="logOut">LogOut</p>
                             </li>
                         </ul>
                     </div>
@@ -109,6 +116,18 @@ $stmt->close();
         document.querySelector('.fa-user').addEventListener('click', function() {
             const personalInfoCard = document.querySelector('.personal-info');
             personalInfoCard.classList.toggle("display-b");
+        });
+
+        // logOut function 
+        function logOut() {
+            window.location.href = 'logOut.php';
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const logOutElement = document.getElementById('logOut');
+            if (logOutElement) {
+                logOutElement.addEventListener('click', logOut);
+            }
         });
     </script>
 </body>

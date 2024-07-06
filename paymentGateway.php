@@ -15,6 +15,7 @@
             padding: 0;
             box-sizing: border-box;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
@@ -100,6 +101,8 @@
 </head>
 
 <body>
+    <h1 style="color: green">Tiffin Trail</h1>
+
     <div class="payment-gateway">
         <?php
 
@@ -145,8 +148,8 @@
             </div>
 
             <img class="p_img" src="<?php echo htmlspecialchars($planDetail['url']); ?>" alt="Plan Image">
-                
-            <button type="submit" class="confirm-button" value="payment" >Proceed</button>
+
+            <button type="submit" class="confirm-button" value="payment">Proceed</button>
         </form>
         <?php
 

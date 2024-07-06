@@ -36,7 +36,7 @@ $search_query = $conn->real_escape_string($search_query);
     <header>
         <nav>
             <div class="nav-left">
-                <img src="images/TT_Logo.png" alt="TTLogo">
+                <img src="https://lh3.googleusercontent.com/RgVqHSvDkg5Gw0_UaeklzrX2_eARmBpRxduqyw2uk54sSe9ErDJL-v6oIyefoxxRMnMhe1YZaoeJtDN9odZ1uo2miPtU=w1200-rw" alt="TTLogo">
                 <span>Jain</span>
             </div>
 

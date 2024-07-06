@@ -64,7 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$userID', '$chefID', '$userName', '$userMobile', '$chefMobile', '$chefName', '$userAddress', '$chefAddress', '$pCode', '$priceType', '$cardNumber', '$upi', '$subscription_date')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Subscription successful!";
+        echo '<script type="text/javascript">
+            alert("Subscription successful!");
+            window.location.href = "razorpay.php";
+          </script>';
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
