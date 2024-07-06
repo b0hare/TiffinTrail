@@ -12,7 +12,10 @@ $M_No = $_SESSION["chefMobile"];
 
 
 // Fetch subscriber details
-$subscribersQuery = "SELECT s.userID, s.userName, s.userAddress, s.planCode FROM subscribers s";
+$subscribersQuery = "SELECT s.userID, s.userName, s.userAddress, s.planCode 
+                     FROM subscribers s 
+                     JOIN plan p ON s.planCode = p.code 
+                     WHERE p.user_id = (SELECT Id FROM users WHERE Mobile_Number = '$M_No')";
 $subscribersResult = mysqli_query($conn, $subscribersQuery);
 
 // Store subscriber details and count them
@@ -64,11 +67,11 @@ foreach ($subscribersData as $subscriber) {
                     <div class="dropdown">
                         <i class="fas fa-user"></i>
                         <div class="dropdown-content">
-                        <form action="updateProfile.php" method="post">
-                            <input style="display: none;"  type="text" name="mobileNumber" value="<?php echo $M_No ; ?>" readonly>
-                            <input type="submit" value="Edit" name="Edit" id="editProfileLink">
-                        </form>
-                        <p id="logOut">LogOut</p>
+                            <form action="updateProfile.php" method="post">
+                                <input style="display: none;" type="text" name="mobileNumber" value="<?php echo $M_No; ?>" readonly>
+                                <input type="submit" value="Edit" name="Edit" id="editProfileLink">
+                            </form>
+                            <p id="logOut">LogOut</p>
                         </div>
                     </div>
                 </div>
@@ -90,26 +93,32 @@ foreach ($subscribersData as $subscriber) {
             foreach ($subscribersData as $subscriber) {
                 $planCode = $subscriber['planCode'];
 
-                // Fetch plan name based on planCode
-                $planQuery = "SELECT plan_name, `url` FROM plan WHERE code = '$planCode'";
+                // Fetch plan name based on planCode for the logged-in chef
+                $planQuery = "SELECT plan_name, url 
+                          FROM plan 
+                          WHERE code = '$planCode' 
+                          AND user_id = (SELECT Id FROM users WHERE Mobile_Number = '$M_No')";
                 $planResult = mysqli_query($conn, $planQuery);
                 $plan = mysqli_fetch_assoc($planResult);
 
                 // Generate the HTML for each order
+                if ($plan) {
             ?>
-                <div class="order d-flex px-3 align-items-center mb-3">
-                    <img src="<?php echo htmlspecialchars($plan['url']); ?>" alt="plan_image" width="35%">
-                    <div class="order_desc">
-                        <h3 class="plan-name tertiary"><?php echo htmlspecialchars($plan['plan_name']); ?></h3>
-                        <h4 class="quaternary subs-name lead"><?php echo htmlspecialchars($subscriber['userName']) . ', ' . htmlspecialchars($subscriber['userAddress']); ?></h4>
-                        <div class="status text-warning">pending</div>
+                    <div class="order d-flex px-3 align-items-center mb-3">
+                        <img src="<?php echo htmlspecialchars($plan['url']); ?>" alt="plan_image" width="35%">
+                        <div class="order_desc">
+                            <h3 class="plan-name tertiary"><?php echo htmlspecialchars($plan['plan_name']); ?></h3>
+                            <h4 class="quaternary subs-name lead"><?php echo htmlspecialchars($subscriber['userName']) . ', ' . htmlspecialchars($subscriber['userAddress']); ?></h4>
+                            <div class="status text-warning">pending</div>
+                        </div>
                     </div>
-                </div>
             <?php
+                }
             }
             ?>
         </div>
     </section>
+
 
     <section id="subs_section">
         <h2 class="no-of-subs secondary">Your Subscribers ☛ <span><?php echo $subscribersCount; ?></span></h2>
