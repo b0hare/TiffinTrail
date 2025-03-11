@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #FC8019;
+}
+
+.plan {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+label {
+    margin: 20px 0;
+}
+
+.plan input[type="text"],
+input[type="number"],
+.plan select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+#planImg{
+    margin: 10px 0 20px;
+}
+
+#planImg a{
+    text-decoration: none;
+    padding: 5px;
+}
+
+#planImageURL{
+    margin: 10px 0 5px;
+}
+
+.plan textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: vertical;
+    /* Allow vertical resizing */
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.plan .btn {
+    background-color: #3A7F00;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+
+}
+
+.plan .btn:hover {
+    background-color: #2F6300;
+
+}
